@@ -18,7 +18,6 @@ import {
   FiMail,
   FiCalendar,
   FiTarget,
-  FiTrendingDown,
 } from "react-icons/fi";
 
 const Home: React.FC = () => {
