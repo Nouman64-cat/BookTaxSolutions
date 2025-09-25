@@ -203,7 +203,8 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="relative">
+          {/* Desktop Timeline */}
+          <div className="relative hidden md:block">
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-200 h-full"></div>
             <div className="space-y-8">
               {[
@@ -248,7 +249,7 @@ const Home: React.FC = () => {
                       index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
                     }`}
                   >
-                    <div className="bg-white rounded-lg shadow-sm p-6 border">
+                    <div className="bg-white rounded-lg shadow-sm p-6 border hover:shadow-md transition-shadow">
                       <div className="flex items-center space-x-3 mb-3">
                         <div
                           className={`w-10 h-10 bg-${item.color}-100 rounded-full flex items-center justify-center`}
@@ -273,6 +274,72 @@ const Home: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="md:hidden space-y-6">
+            {[
+              {
+                month: "January",
+                title: "Tax Document Collection",
+                description: "Gather W-2s, 1099s, and other tax documents",
+                icon: FiFileText,
+                color: "blue",
+              },
+              {
+                month: "March",
+                title: "Business Tax Deadline",
+                description:
+                  "S-Corp and Partnership returns due (with extension)",
+                icon: FiCalendar,
+                color: "orange",
+              },
+              {
+                month: "April",
+                title: "Individual Tax Deadline",
+                description: "Individual tax returns and payments due",
+                icon: FiTarget,
+                color: "red",
+              },
+              {
+                month: "October",
+                title: "Extension Deadline",
+                description: "Extended individual tax returns due",
+                icon: FiClock,
+                color: "purple",
+              },
+            ].map((item, index) => (
+              <div key={index} className="relative pl-8">
+                <div className="absolute left-0 top-1 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                </div>
+                {index < 3 && (
+                  <div className="absolute left-3 top-7 w-px h-12 bg-blue-200"></div>
+                )}
+                <div className="bg-white rounded-lg shadow-sm p-4 border hover:shadow-md transition-shadow">
+                  <div className="flex items-start space-x-3 mb-3">
+                    <div
+                      className={`w-10 h-10 bg-${item.color}-100 rounded-full flex items-center justify-center flex-shrink-0`}
+                    >
+                      <item.icon className={`h-5 w-5 text-${item.color}-600`} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <h4 className="font-semibold text-slate-900 text-sm">
+                          {item.title}
+                        </h4>
+                        <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">
+                          {item.month}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

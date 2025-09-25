@@ -1,17 +1,64 @@
 @import "tailwindcss";
+@import url("/fonts/axiforma.css");
+
+/* Font family configuration for TailwindCSS */
+@layer base {
+  :root {
+    --font-sans: "Axiforma", ui-sans-serif, system-ui, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+  }
+
+  /* Ensure Axiforma font is applied globally */
+  * {
+    font-family: "Axiforma", ui-sans-serif, system-ui, sans-serif;
+  }
+}
 
 /* Global styles for BookTaxSolutions */
 html {
   scroll-behavior: smooth;
+  font-family: "Axiforma", ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Axiforma", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+}
+
+/* Custom font weight utilities for Axiforma */
+@layer utilities {
+  .font-axiforma-thin {
+    font-weight: 100;
+  }
+  .font-axiforma-light {
+    font-weight: 300;
+  }
+  .font-axiforma-regular {
+    font-weight: 400;
+  }
+  .font-axiforma-book {
+    font-weight: 450;
+  }
+  .font-axiforma-medium {
+    font-weight: 500;
+  }
+  .font-axiforma-semibold {
+    font-weight: 600;
+  }
+  .font-axiforma-bold {
+    font-weight: 700;
+  }
+  .font-axiforma-extrabold {
+    font-weight: 800;
+  }
+  .font-axiforma-black {
+    font-weight: 900;
+  }
 }
 
 /* Custom scrollbar styles */
