@@ -28,84 +28,140 @@ const Home: React.FC = () => {
       <Hero />
 
       {/* Quick Overview Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Why Choose BookTaxSolutions?
+      <section className="py-20 relative bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/5 to-purple-500/5"></div>
+          <div className="absolute top-10 right-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 text-slate-700 mb-6">
+              <FiAward className="h-4 w-4 text-blue-600" />
+              <span className="text-sm font-medium">Excellence Since 2008</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Why Choose
+              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+                BookTaxSolutions?
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               We combine years of expertise with modern technology to deliver
               exceptional tax and accounting services tailored to your needs.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                <FiAward className="h-8 w-8 text-blue-600" />
+            <div className="group">
+              <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 text-center space-y-6 hover:bg-white/90 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-blue-500/25 transition-shadow">
+                    <FiAward className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Expert Team
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Certified CPAs and EAs with 15+ years of experience in tax and
+                  accounting excellence.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                Expert Team
-              </h3>
-              <p className="text-slate-600">
-                Certified CPAs and EAs with 15+ years of experience in tax and
-                accounting.
-              </p>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <FiUsers className="h-8 w-8 text-green-600" />
+            <div className="group">
+              <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 text-center space-y-6 hover:bg-white/90 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-green-500/25 transition-shadow">
+                    <FiUsers className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Personalized Service
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Dedicated account managers who understand your unique
+                  financial situation and goals.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                Personalized Service
-              </h3>
-              <p className="text-slate-600">
-                Dedicated account managers who understand your unique financial
-                situation.
-              </p>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                <FiTrendingUp className="h-8 w-8 text-purple-600" />
+            <div className="group">
+              <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 text-center space-y-6 hover:bg-white/90 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-purple-500/25 transition-shadow">
+                    <FiTrendingUp className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Proven Results
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  98% client retention rate and over $2.5M in tax savings
+                  generated for our clients.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                Proven Results
-              </h3>
-              <p className="text-slate-600">
-                98% client retention rate and over $2.5M in tax savings
-                generated.
-              </p>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                <FiShield className="h-8 w-8 text-orange-600" />
+            <div className="group">
+              <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 text-center space-y-6 hover:bg-white/90 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
+                    <FiShield className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-orange-600 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Secure & Compliant
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Bank-level security and full compliance with all tax
+                  regulations and standards.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                Secure & Compliant
-              </h3>
-              <p className="text-slate-600">
-                Bank-level security and full compliance with all tax
-                regulations.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Preview */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Our Core Services
+      <section className="py-20 relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+          <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white/90 mb-6">
+              <FiFileText className="h-4 w-4 text-blue-400" />
+              <span className="text-sm font-medium">Professional Services</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Our Core
+              <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Services
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Comprehensive tax and accounting solutions for individuals and
-              businesses.
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Comprehensive tax and accounting solutions designed for
+              individuals and businesses seeking excellence.
             </p>
           </div>
 
@@ -115,224 +171,299 @@ const Home: React.FC = () => {
                 icon: FiFileText,
                 title: "Tax Preparation",
                 description:
-                  "Individual and business tax returns with maximum deduction optimization.",
+                  "Individual and business tax returns with maximum deduction optimization and expert guidance.",
                 features: [
                   "Individual Returns",
                   "Business Returns",
                   "Multi-State Filing",
                 ],
-                color: "blue",
+                gradient: "from-blue-500 to-blue-600",
+                iconBg: "bg-blue-500/20",
+                borderColor: "border-blue-500/20",
               },
               {
                 icon: FiBook,
                 title: "Bookkeeping Services",
                 description:
-                  "Professional bookkeeping to keep your finances organized and compliant.",
+                  "Professional bookkeeping to keep your finances organized, compliant, and growth-ready.",
                 features: [
                   "Monthly Reconciliation",
                   "Financial Statements",
                   "Payroll Processing",
                 ],
-                color: "green",
+                gradient: "from-emerald-500 to-green-600",
+                iconBg: "bg-emerald-500/20",
+                borderColor: "border-emerald-500/20",
               },
               {
                 icon: FiPieChart,
                 title: "Business Consulting",
                 description:
-                  "Strategic financial advice to help grow your business operations.",
+                  "Strategic financial advice and consulting to accelerate your business growth and success.",
                 features: [
                   "Financial Planning",
                   "Cash Flow Analysis",
                   "Growth Strategy",
                 ],
-                color: "purple",
+                gradient: "from-purple-500 to-purple-600",
+                iconBg: "bg-purple-500/20",
+                borderColor: "border-purple-500/20",
               },
             ].map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-sm p-6 space-y-4 hover:shadow-md transition-shadow"
-              >
+              <div key={index} className="group">
                 <div
-                  className={`w-12 h-12 bg-${service.color}-100 rounded-lg flex items-center justify-center mb-4`}
+                  className={`bg-white/10 backdrop-blur-sm border ${service.borderColor} rounded-2xl p-8 space-y-6 hover:bg-white/15 hover:scale-105 transition-all duration-300 h-full`}
                 >
-                  <service.icon
-                    className={`h-6 w-6 text-${service.color}-600`}
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center space-x-2"
+                  <div className="relative">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-2xl transition-shadow`}
                     >
-                      <FiCheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                      <span className="text-sm text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                      <service.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-300 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    {service.features.map((feature, featureIndex) => (
+                      <div
+                        key={featureIndex}
+                        className="flex items-center space-x-3"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center flex-shrink-0">
+                          <FiCheckCircle className="h-3 w-3 text-white" />
+                        </div>
+                        <span className="text-slate-200 font-medium">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-4">
+                    <div
+                      className={`h-1 bg-gradient-to-r ${service.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity`}
+                    ></div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Link
               to="/services"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors group"
+              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
             >
-              View All Services
-              <FiArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <span>View All Services</span>
+              <div className="ml-3 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <FiArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </div>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Tax Season Timeline */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Tax Season Timeline
+      <section className="py-20 relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 text-slate-700 mb-6">
+              <FiCalendar className="h-4 w-4 text-purple-600" />
+              <span className="text-sm font-medium">Stay Organized</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Tax Season
+              <span className="block bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                Timeline
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Stay on top of important tax deadlines throughout the year with
-              our comprehensive timeline.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Stay ahead of important tax deadlines throughout the year with our
+              comprehensive timeline and expert guidance.
             </p>
           </div>
 
           {/* Desktop Timeline */}
           <div className="relative hidden md:block">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-200 h-full"></div>
-            <div className="space-y-8">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 h-full rounded-full"></div>
+            <div className="space-y-12">
               {[
                 {
                   month: "January",
                   title: "Tax Document Collection",
-                  description: "Gather W-2s, 1099s, and other tax documents",
+                  description:
+                    "Gather W-2s, 1099s, and other essential tax documents for accurate filing",
                   icon: FiFileText,
-                  color: "blue",
+                  gradient: "from-blue-500 to-blue-600",
+                  position: "left",
                 },
                 {
                   month: "March",
                   title: "Business Tax Deadline",
                   description:
-                    "S-Corp and Partnership returns due (with extension)",
+                    "S-Corp and Partnership returns due with proper extensions filed",
                   icon: FiCalendar,
-                  color: "orange",
+                  gradient: "from-orange-500 to-red-500",
+                  position: "right",
                 },
                 {
                   month: "April",
                   title: "Individual Tax Deadline",
-                  description: "Individual tax returns and payments due",
+                  description:
+                    "Individual tax returns and payments due - don't miss this critical date",
                   icon: FiTarget,
-                  color: "red",
+                  gradient: "from-red-500 to-pink-500",
+                  position: "left",
                 },
                 {
                   month: "October",
                   title: "Extension Deadline",
-                  description: "Extended individual tax returns due",
+                  description:
+                    "Extended individual tax returns due - final deadline for the year",
                   icon: FiClock,
-                  color: "purple",
+                  gradient: "from-purple-500 to-purple-600",
+                  position: "right",
                 },
               ].map((item, index) => (
                 <div
                   key={index}
                   className={`flex items-center ${
-                    index % 2 === 0 ? "justify-start" : "justify-end"
+                    item.position === "left" ? "justify-start" : "justify-end"
                   }`}
                 >
                   <div
                     className={`w-1/2 ${
-                      index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
+                      item.position === "left"
+                        ? "pr-12 text-right"
+                        : "pl-12 text-left"
                     }`}
                   >
-                    <div className="bg-white rounded-lg shadow-sm p-6 border hover:shadow-md transition-shadow">
-                      <div className="flex items-center space-x-3 mb-3">
+                    <div className="group">
+                      <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
                         <div
-                          className={`w-10 h-10 bg-${item.color}-100 rounded-full flex items-center justify-center`}
+                          className={`flex items-center space-x-4 mb-6 ${
+                            item.position === "left"
+                              ? "flex-row-reverse space-x-reverse"
+                              : ""
+                          }`}
                         >
-                          <item.icon
-                            className={`h-5 w-5 text-${item.color}-600`}
-                          />
+                          <div
+                            className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow`}
+                          >
+                            <item.icon className="h-8 w-8 text-white" />
+                          </div>
+                          <div
+                            className={
+                              item.position === "left"
+                                ? "text-right"
+                                : "text-left"
+                            }
+                          >
+                            <h4 className="text-2xl font-bold text-slate-900 mb-2">
+                              {item.title}
+                            </h4>
+                            <div
+                              className={`inline-flex px-4 py-2 bg-gradient-to-r ${item.gradient} text-white text-sm font-bold rounded-full`}
+                            >
+                              {item.month}
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-slate-900">
-                            {item.title}
-                          </h4>
-                          <p className="text-sm text-slate-500">{item.month}</p>
-                        </div>
+                        <p className="text-slate-600 leading-relaxed text-lg">
+                          {item.description}
+                        </p>
                       </div>
-                      <p className="text-sm text-slate-600">
-                        {item.description}
-                      </p>
                     </div>
                   </div>
-                  <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow absolute left-1/2 transform -translate-x-1/2"></div>
+                  <div
+                    className={`w-6 h-6 bg-gradient-to-r ${item.gradient} rounded-full border-4 border-white shadow-lg absolute left-1/2 transform -translate-x-1/2`}
+                  ></div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Mobile Timeline */}
-          <div className="md:hidden space-y-6">
+          <div className="md:hidden space-y-8">
             {[
               {
                 month: "January",
                 title: "Tax Document Collection",
-                description: "Gather W-2s, 1099s, and other tax documents",
+                description:
+                  "Gather W-2s, 1099s, and other essential tax documents for accurate filing",
                 icon: FiFileText,
-                color: "blue",
+                gradient: "from-blue-500 to-blue-600",
               },
               {
                 month: "March",
                 title: "Business Tax Deadline",
                 description:
-                  "S-Corp and Partnership returns due (with extension)",
+                  "S-Corp and Partnership returns due with proper extensions filed",
                 icon: FiCalendar,
-                color: "orange",
+                gradient: "from-orange-500 to-red-500",
               },
               {
                 month: "April",
                 title: "Individual Tax Deadline",
-                description: "Individual tax returns and payments due",
+                description:
+                  "Individual tax returns and payments due - don't miss this critical date",
                 icon: FiTarget,
-                color: "red",
+                gradient: "from-red-500 to-pink-500",
               },
               {
                 month: "October",
                 title: "Extension Deadline",
-                description: "Extended individual tax returns due",
+                description:
+                  "Extended individual tax returns due - final deadline for the year",
                 icon: FiClock,
-                color: "purple",
+                gradient: "from-purple-500 to-purple-600",
               },
             ].map((item, index) => (
-              <div key={index} className="relative pl-8">
-                <div className="absolute left-0 top-1 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div key={index} className="relative pl-12">
+                <div
+                  className={`absolute left-0 top-2 w-8 h-8 bg-gradient-to-r ${item.gradient} rounded-full flex items-center justify-center shadow-lg`}
+                >
+                  <div className="w-3 h-3 bg-white rounded-full"></div>
                 </div>
                 {index < 3 && (
-                  <div className="absolute left-3 top-7 w-px h-12 bg-blue-200"></div>
+                  <div className="absolute left-4 top-10 w-px h-16 bg-gradient-to-b from-current to-transparent opacity-30"></div>
                 )}
-                <div className="bg-white rounded-lg shadow-sm p-4 border hover:shadow-md transition-shadow">
-                  <div className="flex items-start space-x-3 mb-3">
+                <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                  <div className="flex items-start space-x-4 mb-4">
                     <div
-                      className={`w-10 h-10 bg-${item.color}-100 rounded-full flex items-center justify-center flex-shrink-0`}
+                      className={`w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}
                     >
-                      <item.icon className={`h-5 w-5 text-${item.color}-600`} />
+                      <item.icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-semibold text-slate-900 text-sm">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="font-bold text-slate-900 text-lg">
                           {item.title}
                         </h4>
-                        <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">
+                        <div
+                          className={`px-3 py-1 bg-gradient-to-r ${item.gradient} text-white text-xs font-bold rounded-full`}
+                        >
                           {item.month}
-                        </span>
+                        </div>
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-slate-600 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -345,15 +476,31 @@ const Home: React.FC = () => {
       </section>
 
       {/* Client Testimonials */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              What Our Clients Say
+      <section className="py-20 relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/5 to-purple-500/5"></div>
+          <div className="absolute top-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white/90 mb-6">
+              <FiStar className="h-4 w-4 text-yellow-400" />
+              <span className="text-sm font-medium">
+                Client Success Stories
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              What Our
+              <span className="block bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                Clients Say
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
               Don't just take our word for it. Here's what our satisfied clients
-              have to say about our services.
+              have to say about our exceptional services.
             </p>
           </div>
 
@@ -362,137 +509,394 @@ const Home: React.FC = () => {
               {
                 name: "Sarah Johnson",
                 role: "Small Business Owner",
+                company: "Johnson Consulting LLC",
                 quote:
-                  "BookTaxSolutions saved my business thousands in taxes and helped streamline our bookkeeping process. Their expertise is unmatched!",
+                  "BookTaxSolutions saved my business thousands in taxes and helped streamline our bookkeeping process. Their expertise is truly unmatched!",
                 rating: 5,
+                image: "SJ",
+                gradient: "from-pink-500 to-rose-500",
+                savings: "$15,000",
               },
               {
                 name: "Michael Chen",
                 role: "Freelance Consultant",
+                company: "Chen Digital Solutions",
                 quote:
-                  "As a freelancer, I was overwhelmed with tax complications. Their team made everything simple and maximized my deductions.",
+                  "As a freelancer, I was overwhelmed with tax complications. Their team made everything simple and maximized my deductions perfectly.",
                 rating: 5,
+                image: "MC",
+                gradient: "from-blue-500 to-cyan-500",
+                savings: "$8,500",
               },
               {
                 name: "Jennifer Martinez",
                 role: "Restaurant Owner",
+                company: "Martinez Family Restaurant",
                 quote:
-                  "Professional, reliable, and always available when I need them. They've been handling our books for 3 years now.",
+                  "Professional, reliable, and always available when I need them. They've been handling our books for 3 years with excellence.",
                 rating: 5,
+                image: "JM",
+                gradient: "from-purple-500 to-indigo-500",
+                savings: "$22,000",
               },
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <FiStar
-                      key={i}
-                      className="h-5 w-5 text-yellow-400 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-slate-600 italic mb-4">
-                  "{testimonial.quote}"
-                </p>
-                <div className="border-t pt-4">
-                  <p className="font-semibold text-slate-900">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-sm text-slate-500">{testimonial.role}</p>
+              <div key={index} className="group">
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 hover:scale-105 transition-all duration-300 h-full">
+                  {/* Rating Stars */}
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="flex items-center space-x-1 bg-yellow-400/20 backdrop-blur-sm rounded-full px-4 py-2">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <FiStar
+                          key={i}
+                          className="h-5 w-5 text-yellow-400 fill-current"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Quote */}
+                  <div className="mb-8">
+                    <div className="text-6xl text-white/20 font-serif leading-none mb-4">
+                      "
+                    </div>
+                    <p className="text-slate-200 italic text-lg leading-relaxed -mt-8 pl-8">
+                      {testimonial.quote}
+                    </p>
+                  </div>
+
+                  {/* Client Info */}
+                  <div className="flex items-center space-x-4">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-r ${testimonial.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
+                    >
+                      <span className="text-white font-bold text-lg">
+                        {testimonial.image}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-bold text-white text-lg">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-slate-300 text-sm">
+                        {testimonial.role}
+                      </p>
+                      <p className="text-slate-400 text-xs">
+                        {testimonial.company}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold text-lg">
+                        {testimonial.savings}
+                      </div>
+                      <div className="text-slate-400 text-xs">Tax Savings</div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Accent */}
+                  <div
+                    className={`mt-6 h-1 bg-gradient-to-r ${testimonial.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity`}
+                  ></div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-16 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">500+</div>
+                <div className="text-slate-400">Happy Clients</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">98%</div>
+                <div className="text-slate-400">Retention Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">$2.5M+</div>
+                <div className="text-slate-400">Tax Savings</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">15+</div>
+                <div className="text-slate-400">Years Experience</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Industry Expertise */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Industry Expertise
+      <section className="py-20 relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/30 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/5 to-cyan-500/5"></div>
+          <div className="absolute top-10 left-10 w-72 h-72 bg-cyan-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 text-slate-700 mb-6">
+              <FiTrendingUp className="h-4 w-4 text-cyan-600" />
+              <span className="text-sm font-medium">Specialized Knowledge</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Industry
+              <span className="block bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                Expertise
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               We serve clients across various industries with specialized
-              knowledge and tailored solutions.
+              knowledge and tailored financial solutions.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
-              "Healthcare",
-              "Technology",
-              "Retail",
-              "Construction",
-              "Professional Services",
-              "Real Estate",
-              "Manufacturing",
-              "Non-Profit",
-              "Hospitality",
-              "Agriculture",
-              "Transportation",
-              "Finance",
+              {
+                name: "Healthcare",
+                icon: "🏥",
+                gradient: "from-red-500 to-pink-500",
+              },
+              {
+                name: "Technology",
+                icon: "💻",
+                gradient: "from-blue-500 to-cyan-500",
+              },
+              {
+                name: "Retail",
+                icon: "🛍️",
+                gradient: "from-green-500 to-emerald-500",
+              },
+              {
+                name: "Construction",
+                icon: "🏗️",
+                gradient: "from-orange-500 to-red-500",
+              },
+              {
+                name: "Professional Services",
+                icon: "💼",
+                gradient: "from-purple-500 to-indigo-500",
+              },
+              {
+                name: "Real Estate",
+                icon: "🏠",
+                gradient: "from-yellow-500 to-orange-500",
+              },
+              {
+                name: "Manufacturing",
+                icon: "🏭",
+                gradient: "from-gray-600 to-slate-600",
+              },
+              {
+                name: "Non-Profit",
+                icon: "❤️",
+                gradient: "from-pink-500 to-rose-500",
+              },
+              {
+                name: "Hospitality",
+                icon: "🍽️",
+                gradient: "from-amber-500 to-yellow-500",
+              },
+              {
+                name: "Agriculture",
+                icon: "🌾",
+                gradient: "from-green-600 to-lime-500",
+              },
+              {
+                name: "Transportation",
+                icon: "🚛",
+                gradient: "from-blue-600 to-indigo-600",
+              },
+              {
+                name: "Finance",
+                icon: "💰",
+                gradient: "from-emerald-500 to-teal-500",
+              },
             ].map((industry, index) => (
-              <div
-                key={index}
-                className="text-center p-4 bg-slate-50 rounded-lg hover:bg-blue-50 transition-colors"
-              >
-                <h4 className="font-medium text-slate-900 text-sm">
-                  {industry}
-                </h4>
+              <div key={index} className="group">
+                <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl p-6 text-center hover:bg-white/90 hover:scale-105 hover:shadow-xl transition-all duration-300">
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-r ${industry.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow`}
+                  >
+                    <span className="text-2xl">{industry.icon}</span>
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-lg mb-2 group-hover:text-cyan-600 transition-colors">
+                    {industry.name}
+                  </h4>
+                  <div
+                    className={`h-1 bg-gradient-to-r ${industry.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity`}
+                  ></div>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Industry Stats */}
+          <div className="mt-16 text-center">
+            <div className="bg-white/60 backdrop-blur-sm border border-white/40 rounded-3xl p-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                    12+
+                  </div>
+                  <div className="text-slate-600 font-medium">
+                    Industries Served
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                    500+
+                  </div>
+                  <div className="text-slate-600 font-medium">
+                    Diverse Clients
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                    98%
+                  </div>
+                  <div className="text-slate-600 font-medium">Success Rate</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold">
-                Ready to Optimize Your Finances?
-              </h2>
-              <p className="text-xl text-blue-100">
-                Get a free consultation and discover how we can save you money
-                while ensuring full compliance.
-              </p>
+      <section className="py-20 relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+          <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white/90">
+                  <FiTarget className="h-4 w-4 text-green-400" />
+                  <span className="text-sm font-medium">Free Consultation</span>
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                  Ready to
+                  <span className="block bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    Optimize
+                  </span>
+                  Your Finances?
+                </h2>
+
+                <p className="text-xl text-slate-300 leading-relaxed">
+                  Get a comprehensive consultation and discover how we can save
+                  you money while ensuring full compliance and maximizing your
+                  financial potential.
+                </p>
+
+                {/* Value Propositions */}
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: FiDollarSign,
+                      text: "Maximize tax savings & deductions",
+                    },
+                    { icon: FiShield, text: "100% compliance guarantee" },
+                    { icon: FiClock, text: "Quick response within 24 hours" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full flex items-center justify-center">
+                        <item.icon className="h-4 w-4 text-white" />
+                      </div>
+                      <span className="text-slate-200">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                  className="group bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                 >
-                  <FiCalendar className="mr-2 h-5 w-5" />
+                  <div className="mr-3 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <FiCalendar className="h-4 w-4" />
+                  </div>
                   Schedule Consultation
                 </Link>
                 <a
                   href="tel:555-123-4567"
-                  className="border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                  className="group border-2 border-white/40 backdrop-blur-sm hover:bg-white hover:text-slate-900 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                 >
-                  <FiPhone className="mr-2 h-5 w-5" />
+                  <div className="mr-3 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-slate-900/20 transition-colors">
+                    <FiPhone className="h-4 w-4" />
+                  </div>
                   Call Now
                 </a>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-white/10 backdrop-blur rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-4">Quick Contact</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <FiPhone className="h-5 w-5" />
-                    <span>(555) 123-4567</span>
+            <div className="space-y-8">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-2xl">
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Quick Contact
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <FiPhone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold">
+                        (555) 123-4567
+                      </div>
+                      <div className="text-slate-400 text-sm">Direct line</div>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <FiMail className="h-5 w-5" />
-                    <span>info@booktaxsolutions.com</span>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <FiMail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold">
+                        info@booktaxsolutions.com
+                      </div>
+                      <div className="text-slate-400 text-sm">
+                        Email us anytime
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <FiClock className="h-5 w-5" />
-                    <span>Mon-Fri: 9AM-6PM</span>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <FiClock className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold">
+                        Mon-Fri: 9AM-6PM
+                      </div>
+                      <div className="text-slate-400 text-sm">
+                        EST Business Hours
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Satisfaction Guarantee */}
+              <div className="bg-gradient-to-r from-green-500/20 to-cyan-500/20 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiAward className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="text-white font-bold text-lg mb-2">
+                  100% Satisfaction Guarantee
+                </h4>
+                <p className="text-slate-300 text-sm">
+                  Risk-free consultation with no obligations
+                </p>
               </div>
             </div>
           </div>
@@ -500,15 +904,28 @@ const Home: React.FC = () => {
       </section>
 
       {/* Recent Blog Posts */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Latest Tax & Accounting Insights
+      <section className="py-20 relative bg-gradient-to-br from-slate-50 via-indigo-50/30 to-purple-50/30 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 text-slate-700 mb-6">
+              <FiBook className="h-4 w-4 text-indigo-600" />
+              <span className="text-sm font-medium">Expert Insights</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+              Latest Tax &
+              <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Accounting Insights
+              </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Stay informed with our latest articles on tax planning, financial
-              strategies, and business insights.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Stay ahead with our expert articles on tax planning, financial
+              strategies, and business growth insights.
             </p>
           </div>
 
@@ -517,65 +934,103 @@ const Home: React.FC = () => {
               {
                 title: "2024 Tax Changes: What You Need to Know",
                 excerpt:
-                  "Important updates and changes for the upcoming tax season that could affect your filing...",
+                  "Important updates and changes for the upcoming tax season that could significantly affect your filing strategy and potential savings...",
                 date: "March 15, 2024",
                 category: "Tax Planning",
+                gradient: "from-blue-500 to-cyan-500",
+                icon: "📋",
+                readTime: "5 min read",
               },
               {
                 title: "Small Business Bookkeeping Best Practices",
                 excerpt:
-                  "Essential bookkeeping practices that can help your business maintain accurate financial records...",
+                  "Essential bookkeeping practices that can help your business maintain accurate financial records and improve cash flow management...",
                 date: "February 28, 2024",
                 category: "Bookkeeping",
+                gradient: "from-green-500 to-emerald-500",
+                icon: "📊",
+                readTime: "7 min read",
               },
               {
                 title: "Maximizing Business Deductions Guide",
                 excerpt:
-                  "Learn about often-overlooked business deductions that could save your company thousands...",
+                  "Learn about often-overlooked business deductions that could save your company thousands in taxes and improve your bottom line...",
                 date: "January 20, 2024",
                 category: "Business Tax",
+                gradient: "from-purple-500 to-indigo-500",
+                icon: "💰",
+                readTime: "6 min read",
               },
             ].map((post, index) => (
-              <article
-                key={index}
-                className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <div className="h-48 bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
-                  <div className="text-slate-500 text-center">
-                    <div className="text-4xl mb-2">📊</div>
-                    <div className="text-sm">Blog Image</div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between text-sm mb-3">
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
-                      {post.category}
-                    </span>
-                    <span className="text-slate-500">{post.date}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm mb-4">{post.excerpt}</p>
-                  <Link
-                    to="/blogs"
-                    className="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center"
+              <article key={index} className="group">
+                <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 h-full">
+                  <div
+                    className={`h-48 bg-gradient-to-br ${post.gradient} flex items-center justify-center relative overflow-hidden`}
                   >
-                    Read More
-                    <FiArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    <div className="relative text-white text-center">
+                      <div className="text-6xl mb-2">{post.icon}</div>
+                      <div className="text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                        {post.readTime}
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <div
+                        className={`px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold rounded-full bg-gradient-to-r ${post.gradient} bg-clip-text text-transparent`}
+                      >
+                        NEW
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between text-sm">
+                      <span
+                        className={`bg-gradient-to-r ${post.gradient} text-white px-3 py-1 rounded-full font-medium text-xs`}
+                      >
+                        {post.category}
+                      </span>
+                      <span className="text-slate-500 font-medium">
+                        {post.date}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
+                      {post.title}
+                    </h3>
+
+                    <p className="text-slate-600 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="pt-4">
+                      <Link
+                        to="/blogs"
+                        className={`inline-flex items-center text-transparent bg-gradient-to-r ${post.gradient} bg-clip-text font-bold hover:scale-105 transition-transform group-hover:gap-2`}
+                      >
+                        <span>Read Full Article</span>
+                        <FiArrowRight className="ml-1 h-4 w-4 text-indigo-600 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`h-1 bg-gradient-to-r ${post.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
+                  ></div>
                 </div>
               </article>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Link
               to="/blogs"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors group"
+              className="group inline-flex items-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
             >
-              View All Articles
-              <FiArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <span>View All Articles</span>
+              <div className="ml-3 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <FiArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </div>
             </Link>
           </div>
         </div>
