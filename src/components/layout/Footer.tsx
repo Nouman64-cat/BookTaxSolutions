@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiPhone,
   FiMail,
@@ -14,20 +15,14 @@ const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", id: "home" },
-    { name: "About", id: "about" },
-    { name: "Services", id: "services" },
-    { name: "Contact", id: "contact" },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Blogs", path: "/blogs" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const services = [
@@ -121,12 +116,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
+                    <Link
+                      to={link.path}
                       className="text-slate-300 hover:text-white transition-colors"
                     >
                       {link.name}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -157,12 +152,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {services.map((service, index) => (
                   <li key={index}>
-                    <button
-                      onClick={() => scrollToSection("services")}
+                    <Link
+                      to="/services"
                       className="text-slate-300 hover:text-white transition-colors text-left"
                     >
                       {service}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>

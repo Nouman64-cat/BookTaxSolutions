@@ -1,28 +1,24 @@
-import { useEffect } from "react";
-import { Navbar, Footer, Hero, About, Services, Contact } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar, Footer } from "./components";
+import { Home, About, Services, Contact, Blogs } from "./pages";
 
 function App() {
-  useEffect(() => {
-    // Add smooth scrolling behavior to the document
-    document.documentElement.style.scrollBehavior = "smooth";
-
-    return () => {
-      // Cleanup
-      document.documentElement.style.scrollBehavior = "auto";
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

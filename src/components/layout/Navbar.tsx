@@ -1,19 +1,17 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FiMenu, FiX, FiPhone, FiMail } from "react-icons/fi";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
-    }
+  const isActive = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -45,52 +43,78 @@ const Navbar: React.FC = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <button
-                onClick={() => scrollToSection("home")}
+              <Link
+                to="/"
                 className="text-2xl font-bold text-slate-800 hover:text-blue-600 transition-colors"
               >
                 BookTax<span className="text-blue-600">Solutions</span>
-              </button>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <button
-                  onClick={() => scrollToSection("home")}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                <Link
+                  to="/"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive("/")
+                      ? "text-blue-600"
+                      : "text-slate-700 hover:text-blue-600"
+                  }`}
                 >
                   Home
-                </button>
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                </Link>
+                <Link
+                  to="/about"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive("/about")
+                      ? "text-blue-600"
+                      : "text-slate-700 hover:text-blue-600"
+                  }`}
                 >
                   About
-                </button>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                </Link>
+                <Link
+                  to="/services"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive("/services")
+                      ? "text-blue-600"
+                      : "text-slate-700 hover:text-blue-600"
+                  }`}
                 >
                   Services
-                </button>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                </Link>
+                <Link
+                  to="/blogs"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive("/blogs")
+                      ? "text-blue-600"
+                      : "text-slate-700 hover:text-blue-600"
+                  }`}
+                >
+                  Blogs
+                </Link>
+                <Link
+                  to="/contact"
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive("/contact")
+                      ? "text-blue-600"
+                      : "text-slate-700 hover:text-blue-600"
+                  }`}
                 >
                   Contact
-                </button>
+                </Link>
               </div>
             </div>
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <button
-                onClick={() => scrollToSection("contact")}
+              <Link
+                to="/contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
               >
                 Get Free Consultation
-              </button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -114,37 +138,69 @@ const Navbar: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-              <button
-                onClick={() => scrollToSection("home")}
-                className="text-slate-700 hover:text-blue-600 block w-full text-left px-3 py-2 text-base font-medium"
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full text-left px-3 py-2 text-base font-medium ${
+                  isActive("/")
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
               >
                 Home
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-slate-700 hover:text-blue-600 block w-full text-left px-3 py-2 text-base font-medium"
+              </Link>
+              <Link
+                to="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full text-left px-3 py-2 text-base font-medium ${
+                  isActive("/about")
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
               >
                 About
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="text-slate-700 hover:text-blue-600 block w-full text-left px-3 py-2 text-base font-medium"
+              </Link>
+              <Link
+                to="/services"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full text-left px-3 py-2 text-base font-medium ${
+                  isActive("/services")
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
               >
                 Services
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-slate-700 hover:text-blue-600 block w-full text-left px-3 py-2 text-base font-medium"
+              </Link>
+              <Link
+                to="/blogs"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full text-left px-3 py-2 text-base font-medium ${
+                  isActive("/blogs")
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
+              >
+                Blogs
+              </Link>
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block w-full text-left px-3 py-2 text-base font-medium ${
+                  isActive("/contact")
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
               >
                 Contact
-              </button>
+              </Link>
               <div className="px-3 py-2">
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium w-full transition-colors"
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium w-full transition-colors block text-center"
                 >
                   Get Free Consultation
-                </button>
+                </Link>
               </div>
             </div>
           </div>
