@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/sections/Hero";
 import {
@@ -19,6 +19,8 @@ import {
   FiCalendar,
   FiTarget,
 } from "react-icons/fi";
+import { blogService } from "../services/blogService";
+import type { Blog } from "../types/blog";
 
 const Home: React.FC = () => {
   return (
@@ -929,96 +931,8 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "2024 Tax Changes: What You Need to Know",
-                excerpt:
-                  "Important updates and changes for the upcoming tax season that could significantly affect your filing strategy and potential savings...",
-                date: "March 15, 2024",
-                category: "Tax Planning",
-                gradient: "from-blue-500 to-cyan-500",
-                icon: "📋",
-                readTime: "5 min read",
-              },
-              {
-                title: "Small Business Bookkeeping Best Practices",
-                excerpt:
-                  "Essential bookkeeping practices that can help your business maintain accurate financial records and improve cash flow management...",
-                date: "February 28, 2024",
-                category: "Bookkeeping",
-                gradient: "from-green-500 to-emerald-500",
-                icon: "📊",
-                readTime: "7 min read",
-              },
-              {
-                title: "Maximizing Business Deductions Guide",
-                excerpt:
-                  "Learn about often-overlooked business deductions that could save your company thousands in taxes and improve your bottom line...",
-                date: "January 20, 2024",
-                category: "Business Tax",
-                gradient: "from-purple-500 to-indigo-500",
-                icon: "💰",
-                readTime: "6 min read",
-              },
-            ].map((post, index) => (
-              <article key={index} className="group">
-                <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 h-full">
-                  <div
-                    className={`h-48 bg-gradient-to-br ${post.gradient} flex items-center justify-center relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-black/10"></div>
-                    <div className="relative text-white text-center">
-                      <div className="text-6xl mb-2">{post.icon}</div>
-                      <div className="text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                        {post.readTime}
-                      </div>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <div
-                        className={`px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold rounded-full bg-gradient-to-r ${post.gradient} bg-clip-text text-transparent`}
-                      >
-                        NEW
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span
-                        className={`bg-gradient-to-r ${post.gradient} text-white px-3 py-1 rounded-full font-medium text-xs`}
-                      >
-                        {post.category}
-                      </span>
-                      <span className="text-slate-500 font-medium">
-                        {post.date}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-slate-600 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-
-                    <div className="pt-4">
-                      <Link
-                        to="/blogs"
-                        className={`inline-flex items-center text-transparent bg-gradient-to-r ${post.gradient} bg-clip-text font-bold hover:scale-105 transition-transform group-hover:gap-2`}
-                      >
-                        <span>Read Full Article</span>
-                        <FiArrowRight className="ml-1 h-4 w-4 text-indigo-600 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`h-1 bg-gradient-to-r ${post.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
-                  ></div>
-                </div>
-              </article>
-            ))}
+            {/* Fetch real blogs and show up to 3 cards. If fetch fails, fall back to static posts. */}
+            <HomeBlogCards />
           </div>
 
           <div className="text-center mt-16">
@@ -1039,3 +953,119 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+// Small internal component to render up to 3 blog cards on the Home page
+const HomeBlogCards: React.FC = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetch = async () => {
+      try {
+        const data = await blogService.getAllBlogs();
+        if (mounted) setBlogs(data.slice(0, 3));
+      } catch {
+        // fallback static posts
+        if (mounted)
+          setBlogs([
+            {
+              slug: "2024-tax-changes",
+              title: "2024 Tax Changes: What You Need to Know",
+              excerpt:
+                "Important updates and changes for the upcoming tax season that could significantly affect your filing strategy and potential savings...",
+              image: { url: "" },
+              content: { markdown: "" },
+            },
+            {
+              slug: "small-business-bookkeeping",
+              title: "Small Business Bookkeeping Best Practices",
+              excerpt:
+                "Essential bookkeeping practices that can help your business maintain accurate financial records and improve cash flow management...",
+              image: { url: "" },
+              content: { markdown: "" },
+            },
+            {
+              slug: "maximizing-deductions",
+              title: "Maximizing Business Deductions Guide",
+              excerpt:
+                "Learn about often-overlooked business deductions that could save your company thousands in taxes and improve your bottom line...",
+              image: { url: "" },
+              content: { markdown: "" },
+            },
+          ]);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+
+    fetch();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (loading) return null;
+
+  return (
+    <>
+      {blogs.map((blog) => (
+        <article key={blog.slug} className="group">
+          <div className="bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 h-full">
+            <div className="h-48 overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
+              {blog.image?.url ? (
+                <img
+                  src={blog.image.url}
+                  alt={blog.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    // fallback to a safe public asset if the image can't be loaded
+                    const target = e.currentTarget as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = "/vite.svg";
+                  }}
+                />
+              ) : (
+                <div className="h-full flex items-center justify-center">
+                  <div className="relative text-slate-700 text-center px-6">
+                    <div className="text-4xl mb-2">📄</div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="flex items-center justify-between text-sm">
+                <span
+                  className={`bg-slate-100 text-slate-800 px-3 py-1 rounded-full font-medium text-xs`}
+                >
+                  Article
+                </span>
+              </div>
+
+              <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
+                {blog.title}
+              </h3>
+
+              <p className="text-slate-600 leading-relaxed">{blog.excerpt}</p>
+
+              <div className="pt-4">
+                <Link
+                  to={`/blog/${blog.slug}`}
+                  className={`inline-flex items-center text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text font-bold hover:scale-105 transition-transform group-hover:gap-2`}
+                >
+                  <span>Read Full Article</span>
+                  <FiArrowRight className="ml-1 h-4 w-4 text-indigo-600 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            <div
+              className={`h-1 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-60 group-hover:opacity-100 transition-opacity`}
+            ></div>
+          </div>
+        </article>
+      ))}
+    </>
+  );
+};
