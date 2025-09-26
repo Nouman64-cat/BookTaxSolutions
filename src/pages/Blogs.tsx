@@ -9,6 +9,15 @@ const Blogs: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const BLOGS_PER_PAGE = 6;
+
+  const totalPages = Math.max(1, Math.ceil(blogs.length / BLOGS_PER_PAGE));
+
+  useEffect(() => {
+    // clamp current page if blogs length changes
+    if (currentPage > totalPages) setCurrentPage(1);
+  }, [blogs.length, currentPage, totalPages]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -66,53 +75,101 @@ const Blogs: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {blogs.map((blog) => (
-                <div
-                  key={blog.slug}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-                >
-                  {/* Blog Image */}
-                  <div className="h-48 overflow-hidden">
-                    {blog.image?.url ? (
-                      <img
-                        src={blog.image.url}
-                        alt={blog.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="h-full bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
-                        <div className="text-slate-500 text-center">
-                          <div className="text-4xl mb-2">📊</div>
-                          <div className="text-sm">Blog Image</div>
-                        </div>
+            <>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {blogs
+                  .slice(
+                    (currentPage - 1) * BLOGS_PER_PAGE,
+                    currentPage * BLOGS_PER_PAGE
+                  )
+                  .map((blog) => (
+                    <div
+                      key={blog.slug}
+                      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                    >
+                      {/* Blog Image */}
+                      <div className="h-48 overflow-hidden">
+                        {blog.image?.url ? (
+                          <img
+                            src={blog.image.url}
+                            alt={blog.title}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="h-full bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
+                            <div className="text-slate-500 text-center">
+                              <div className="text-4xl mb-2">📊</div>
+                              <div className="text-sm">Blog Image</div>
+                            </div>
+                          </div>
+                        )}
                       </div>
+
+                      <div className="p-6 space-y-4">
+                        {/* Title */}
+                        <h2 className="text-xl font-bold text-slate-900 line-clamp-2 hover:text-blue-600 transition-colors">
+                          {blog.title}
+                        </h2>
+
+                        {/* Excerpt */}
+                        <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
+                          {blog.excerpt}
+                        </p>
+
+                        {/* Read More Button */}
+                        <button
+                          onClick={() => handleBlogClick(blog.slug)}
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center group"
+                        >
+                          Read Full Article
+                          <FiArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {/* Pagination Controls */}
+              {blogs.length > BLOGS_PER_PAGE && (
+                <div className="mt-12 flex items-center justify-center space-x-3">
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 rounded-lg border bg-white hover:bg-slate-50 disabled:opacity-50"
+                  >
+                    Previous
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      (p) => (
+                        <button
+                          key={p}
+                          onClick={() => setCurrentPage(p)}
+                          className={`px-3 py-1 rounded-md ${
+                            p === currentPage
+                              ? "bg-blue-600 text-white"
+                              : "bg-white border"
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      )
                     )}
                   </div>
 
-                  <div className="p-6 space-y-4">
-                    {/* Title */}
-                    <h2 className="text-xl font-bold text-slate-900 line-clamp-2 hover:text-blue-600 transition-colors">
-                      {blog.title}
-                    </h2>
-
-                    {/* Excerpt */}
-                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
-                      {blog.excerpt}
-                    </p>
-
-                    {/* Read More Button */}
-                    <button
-                      onClick={() => handleBlogClick(blog.slug)}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center group"
-                    >
-                      Read Full Article
-                      <FiArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() =>
+                      setCurrentPage((p) => Math.min(totalPages, p + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg border bg-white hover:bg-slate-50 disabled:opacity-50"
+                  >
+                    Next
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           )}
 
           {/* Newsletter Subscription */}

@@ -329,18 +329,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Map Placeholder */}
-        <div className="mt-16">
-          <div className="bg-slate-200 rounded-2xl h-64 flex items-center justify-center">
-            <div className="text-center space-y-2">
-              <FiMapPin className="h-12 w-12 text-slate-400 mx-auto" />
-              <p className="text-slate-600">Interactive Map</p>
-              <p className="text-sm text-slate-500">
-                123 Business Ave, Suite 100, City, State 12345
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* Map removed per request */}
       </div>
     </section>
   );
