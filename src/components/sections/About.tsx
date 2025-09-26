@@ -180,7 +180,7 @@ const About: React.FC = () => {
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <div key={feature.title} className="group">
               <div
                 className={`bg-white/80 backdrop-blur-sm border ${feature.borderColor} rounded-2xl p-8 text-center space-y-6 hover:bg-white/90 hover:shadow-xl hover:scale-105 transition-all duration-300 h-full`}
@@ -237,7 +237,7 @@ const About: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <div key={stat.label} className="text-center group">
                   <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:scale-105 transition-all duration-300">
                     <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform">

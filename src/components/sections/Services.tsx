@@ -13,85 +13,91 @@ import {
 const Services: React.FC = () => {
   const services = [
     {
+      id: "tax-prep",
       icon: FiFileText,
       title: "Tax Preparation",
       description:
         "Complete individual and business tax preparation with maximum deduction optimization.",
       features: [
-        "Individual Tax Returns",
-        "Business Tax Returns",
-        "Amended Returns",
-        "Multi-State Filing",
+        { id: "indiv-returns", text: "Individual Tax Returns" },
+        { id: "biz-returns", text: "Business Tax Returns" },
+        { id: "amended-returns", text: "Amended Returns" },
+        { id: "multi-state", text: "Multi-State Filing" },
       ],
       price: "Starting at $99",
       popular: false,
     },
     {
+      id: "bookkeeping",
       icon: FiBook,
       title: "Bookkeeping Services",
       description:
         "Professional bookkeeping to keep your finances organized and compliant.",
       features: [
-        "Monthly Reconciliation",
-        "Financial Statements",
-        "Payroll Processing",
-        "QuickBooks Setup",
+        { id: "monthly-recon", text: "Monthly Reconciliation" },
+        { id: "financial-statements", text: "Financial Statements" },
+        { id: "payroll-processing", text: "Payroll Processing" },
+        { id: "quickbooks-setup", text: "QuickBooks Setup" },
       ],
       price: "Starting at $200/month",
       popular: true,
     },
     {
+      id: "business-consulting",
       icon: FiTrendingUp,
       title: "Business Consulting",
       description:
         "Strategic financial advice to help grow and optimize your business operations.",
       features: [
-        "Financial Planning",
-        "Cash Flow Analysis",
-        "Business Structure",
-        "Growth Strategy",
+        { id: "financial-planning", text: "Financial Planning" },
+        { id: "cash-flow", text: "Cash Flow Analysis" },
+        { id: "business-structure", text: "Business Structure" },
+        { id: "growth-strategy", text: "Growth Strategy" },
       ],
       price: "Starting at $150/hour",
       popular: false,
     },
     {
+      id: "payroll-management",
       icon: FiUsers,
       title: "Payroll Management",
       description:
         "Complete payroll solutions including tax deposits and compliance reporting.",
       features: [
-        "Payroll Processing",
-        "Tax Deposits",
-        "W-2/1099 Preparation",
-        "State Compliance",
+        { id: "payroll-processing-2", text: "Payroll Processing" },
+        { id: "tax-deposits", text: "Tax Deposits" },
+        { id: "w2-1099", text: "W-2/1099 Preparation" },
+        { id: "state-compliance", text: "State Compliance" },
       ],
       price: "Starting at $50/month",
       popular: false,
     },
     {
+      id: "sales-tax",
       icon: FiCreditCard,
       title: "Sales Tax Services",
       description:
         "Sales tax registration, filing, and compliance for multi-state businesses.",
       features: [
-        "Registration Setup",
-        "Monthly/Quarterly Filing",
-        "Audit Support",
-        "Nexus Analysis",
+        { id: "registration-setup-2", text: "Registration Setup" },
+        { id: "monthly-filing", text: "Monthly/Quarterly Filing" },
+        { id: "audit-support-2", text: "Audit Support" },
+        { id: "nexus-analysis-2", text: "Nexus Analysis" },
       ],
       price: "Starting at $75/month",
       popular: false,
     },
     {
+      id: "financial-planning",
       icon: FiPieChart,
       title: "Financial Planning",
       description:
         "Comprehensive financial planning and retirement strategy development.",
       features: [
-        "Retirement Planning",
-        "Investment Analysis",
-        "Estate Planning",
-        "Risk Assessment",
+        { id: "retirement-planning", text: "Retirement Planning" },
+        { id: "investment-analysis-2", text: "Investment Analysis" },
+        { id: "estate-planning-2", text: "Estate Planning" },
+        { id: "risk-assessment-2", text: "Risk Assessment" },
       ],
       price: "Starting at $200/hour",
       popular: false,
@@ -125,7 +131,7 @@ const Services: React.FC = () => {
             <span className="text-sm font-medium">Professional Services</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Our Professional
+            Our Professional{" "}
             <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
               Services
             </span>
@@ -139,9 +145,9 @@ const Services: React.FC = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
-              key={service.title}
+              key={service.id}
               className={`group relative bg-white/80 backdrop-blur-sm border border-white/40 rounded-2xl shadow-lg p-8 transition-all duration-300 hover:bg-white/90 hover:shadow-2xl hover:scale-105 ${
                 service.popular ? "ring-2 ring-blue-500 shadow-blue-500/20" : ""
               }`}
@@ -175,13 +181,15 @@ const Services: React.FC = () => {
 
                 {/* Features List */}
                 <div className="space-y-3">
-                  {service.features.map((feature, featureIndex) => (
+                  {service.features.map((feature) => (
                     <div
-                      key={featureIndex}
+                      key={feature.id}
                       className="flex items-center space-x-3"
                     >
                       <FiCheck className="h-4 w-4 text-green-500 flex-shrink-0" />
-                      <span className="text-sm text-slate-700">{feature}</span>
+                      <span className="text-sm text-slate-700">
+                        {feature.text}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -222,7 +230,7 @@ const Services: React.FC = () => {
                   </span>
                 </div>
                 <h3 className="text-3xl font-bold text-slate-900">
-                  Additional Specialized
+                  Additional Specialized{" "}
                   <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Services
                   </span>
