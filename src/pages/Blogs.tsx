@@ -1,51 +1,35 @@
-import React from "react";
-import { FiCalendar, FiUser, FiArrowRight, FiClock } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+import { FiArrowRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { blogService } from "../services/blogService";
+import type { Blog } from "../types/blog";
 
 const Blogs: React.FC = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "2024 Tax Season: Key Changes and Deadlines You Need to Know",
-      excerpt:
-        "Stay ahead of the curve with the latest tax law changes, new deductions, and important filing deadlines for the 2024 tax season.",
-      content:
-        "The 2024 tax season brings several important changes that individuals and businesses need to be aware of. From adjusted tax brackets to new deduction limits, understanding these changes can significantly impact your tax liability...",
-      author: "Sarah Johnson, CPA",
-      date: "March 15, 2024",
-      readTime: "8 min read",
-      category: "Tax Planning",
-      image: "/api/placeholder/600/300",
-      tags: ["Tax Planning", "IRS Updates", "Deadlines"],
-    },
-    {
-      id: 2,
-      title: "Small Business Bookkeeping: Best Practices for Financial Success",
-      excerpt:
-        "Discover essential bookkeeping practices that can help your small business maintain accurate records and make informed financial decisions.",
-      content:
-        "Proper bookkeeping is the foundation of any successful business. Many small business owners struggle with maintaining accurate financial records, which can lead to compliance issues and missed opportunities...",
-      author: "Michael Chen, EA",
-      date: "February 28, 2024",
-      readTime: "6 min read",
-      category: "Bookkeeping",
-      image: "/api/placeholder/600/300",
-      tags: ["Bookkeeping", "Small Business", "Financial Management"],
-    },
-    {
-      id: 3,
-      title: "Maximizing Business Deductions: A Comprehensive Guide",
-      excerpt:
-        "Learn about often-overlooked business deductions that could save your company thousands of dollars on taxes this year.",
-      content:
-        "Business deductions are one of the most effective ways to reduce your tax liability, but many business owners miss out on significant savings by not knowing what expenses qualify...",
-      author: "Jennifer Martinez, CPA",
-      date: "January 20, 2024",
-      readTime: "10 min read",
-      category: "Business Tax",
-      image: "/api/placeholder/600/300",
-      tags: ["Business Deductions", "Tax Savings", "Business Tax"],
-    },
-  ];
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        const fetchedBlogs = await blogService.getAllBlogs();
+        setBlogs(fetchedBlogs);
+      } catch (err) {
+        console.error("Failed to fetch blogs:", err);
+        setError("Failed to load blogs. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  const handleBlogClick = (slug: string) => {
+    navigate(`/blog/${slug}`);
+  };
 
   return (
     <div className="min-h-screen pt-20">
@@ -65,75 +49,71 @@ const Blogs: React.FC = () => {
       {/* Blog Posts */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <article
-                key={post.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <div className="text-red-600 text-lg font-medium mb-4">
+                {error}
+              </div>
+              <button
+                onClick={() => window.location.reload()}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg"
               >
-                {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
-                  <div className="text-slate-500 text-center">
-                    <div className="text-4xl mb-2">📊</div>
-                    <div className="text-sm">Blog Image</div>
+                Try Again
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {blogs.map((blog) => (
+                <div
+                  key={blog.slug}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                >
+                  {/* Blog Image */}
+                  <div className="h-48 overflow-hidden">
+                    {blog.image?.url ? (
+                      <img
+                        src={blog.image.url}
+                        alt={blog.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="h-full bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
+                        <div className="text-slate-500 text-center">
+                          <div className="text-4xl mb-2">📊</div>
+                          <div className="text-sm">Blog Image</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    {/* Title */}
+                    <h2 className="text-xl font-bold text-slate-900 line-clamp-2 hover:text-blue-600 transition-colors">
+                      {blog.title}
+                    </h2>
+
+                    {/* Excerpt */}
+                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
+                      {blog.excerpt}
+                    </p>
+
+                    {/* Read More Button */}
+                    <button
+                      onClick={() => handleBlogClick(blog.slug)}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center group"
+                    >
+                      Read Full Article
+                      <FiArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
                   </div>
                 </div>
-
-                <div className="p-6 space-y-4">
-                  {/* Category and Read Time */}
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
-                      {post.category}
-                    </span>
-                    <div className="flex items-center text-slate-500">
-                      <FiClock className="h-4 w-4 mr-1" />
-                      {post.readTime}
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="text-xl font-bold text-slate-900 line-clamp-2">
-                    {post.title}
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Author and Date */}
-                  <div className="flex items-center justify-between pt-4 border-t">
-                    <div className="flex items-center space-x-2 text-sm text-slate-500">
-                      <FiUser className="h-4 w-4" />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm text-slate-500">
-                      <FiCalendar className="h-4 w-4" />
-                      <span>{post.date}</span>
-                    </div>
-                  </div>
-
-                  {/* Read More Button */}
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center group">
-                    Read Full Article
-                    <FiArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Newsletter Subscription */}
           <div className="mt-20 bg-slate-900 rounded-2xl p-8 lg:p-12 text-center text-white">

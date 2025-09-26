@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("/fonts/axiforma.css");
+@import "tailwindcss";
 
 /* Font family configuration for TailwindCSS */
 @layer base {
