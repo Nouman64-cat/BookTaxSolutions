@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { FiMenu, FiX, FiArrowUpRight, FiMoon, FiSun } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import { cn } from "../../utils/cn";
-import AccentButton from "../common/AccentButton";
 import Logo from "./Logo";
-import { useTheme } from "../../hooks/useTheme";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -18,8 +16,6 @@ const BookTaxSolution_STUDIO_URL = import.meta.env
 
 const NavigationBar = () => {
   const [open, setOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
 
   const toggle = () => setOpen((prev) => !prev);
   const close = () => setOpen(false);
@@ -54,14 +50,14 @@ const NavigationBar = () => {
           >
             Contact us <FiArrowUpRight />
           </Link>
-          <button
+          {/* <button
             type="button"
             onClick={toggleTheme}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary-button bg-secondary-button text-foreground transition-colors hover:bg-secondary-button-hover"
             aria-label="Toggle theme"
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-          </button>
+          </button> */}
         </div>
 
         <button
@@ -73,7 +69,7 @@ const NavigationBar = () => {
         </button>
 
         {open && (
-          <div className="absolute inset-x-0 top-full border-b border-border bg-overlay px-4 pb-6 pt-4 shadow-lg shadow-black/20 md:hidden transition-colors">
+          <div className="absolute inset-x-0 top-full border-b border-border bg-gradient-to-br from-indigo-600 via-surface-elevated to-surface  backdrop-blur-md px-4 pb-6 pt-4 shadow-lg shadow-black/20 md:hidden transition-colors shadow-theme-card">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <NavLink
@@ -91,19 +87,6 @@ const NavigationBar = () => {
                 </NavLink>
               ))}
               <hr className="border-border" />
-              <button
-                type="button"
-                onClick={() => {
-                  toggleTheme();
-                  close();
-                }}
-                className="flex items-center justify-between rounded-lg px-3 py-2 text-base font-medium text-muted transition-colors hover:bg-accent-soft hover:text-foreground"
-              >
-                <span>
-                  {isDark ? "Switch to light mode" : "Switch to dark mode"}
-                </span>
-                {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-              </button>
               <Link
                 to={`${BookTaxSolution_STUDIO_URL}/studio`}
                 onClick={close}
