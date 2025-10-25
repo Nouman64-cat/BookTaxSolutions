@@ -28,7 +28,7 @@ export const featuredCourses: Course[] = [
       {
         id: "instructor-lee",
         name: "Dr. Hannah Lee",
-        title: "AI Research Lead, Zygotrix Labs",
+        title: "AI Research Lead, BookTaxSolution Labs",
         avatar:
           "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=60",
         bio: "Hands-on researcher focused on explainable AI and adaptive learning systems.",
@@ -402,7 +402,7 @@ export const testimonials: Testimonial[] = [
     role: "AI Product Manager",
     company: "Orbit Labs",
     message:
-      "Zygotrix University blends learner empathy with deep technical rigor. The Simulation Studio labs let my team rehearse real-world launches before we hit production.",
+      "BookTaxSolution blends learner empathy with deep technical rigor. The Simulation Studio labs let my team rehearse real-world launches before we hit production.",
     avatar:
       "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=60",
   },
@@ -454,7 +454,7 @@ export const faqs: FaqItem[] = [
     id: "faq-4",
     question: "Can teams onboard together?",
     answer:
-      "Absolutely. Zygotrix for Teams unlocks cohort analytics, tailored practice sets, and change-management resources designed for enterprise rollouts.",
+      "Absolutely. BookTaxSolution for Teams unlocks cohort analytics, tailored practice sets, and change-management resources designed for enterprise rollouts.",
     category: "Teams",
   },
 ];

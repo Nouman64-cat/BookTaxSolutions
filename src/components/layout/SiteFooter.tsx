@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { FiArrowUpRight, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiGithub,
+  FiLinkedin,
+  FiTwitter,
+} from "react-icons/fi";
 import Container from "../common/Container";
 import Logo from "../navigation/Logo";
 
@@ -16,7 +21,7 @@ const footerLinks = [
   {
     title: "Company",
     links: [
-      { label: "About Zygotrix", to: "/about" },
+      { label: "About BookTaxSolution", to: "/about" },
       { label: "Community", to: "/community" },
       { label: "Enterprise", to: "/enterprise" },
       { label: "Press Kit", to: "/resources" },
@@ -47,14 +52,15 @@ const SiteFooter = () => {
           <div className="space-y-5 lg:col-span-4">
             <Logo />
             <p className="text-sm text-muted">
-              Zygotrix University empowers product builders with studio-grade courses,
-              adaptive practice, and mentorship that mirrors modern teams.
+              BookTaxSolution empowers product builders with studio-grade
+              courses, adaptive practice, and mentorship that mirrors modern
+              teams.
             </p>
             <Link
               to="/enterprise"
               className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-foreground"
             >
-              Zygotrix for Teams
+              BookTaxSolution for Teams
               <FiArrowUpRight />
             </Link>
           </div>
@@ -68,7 +74,10 @@ const SiteFooter = () => {
                 <ul className="mt-4 space-y-3">
                   {section.links.map((link) => (
                     <li key={link.to}>
-                  <Link className="text-muted transition-colors hover:text-foreground" to={link.to}>
+                      <Link
+                        className="text-muted transition-colors hover:text-foreground"
+                        to={link.to}
+                      >
                         {link.label}
                       </Link>
                     </li>
@@ -94,7 +103,8 @@ const SiteFooter = () => {
             ))}
           </div>
           <p className="text-xs text-muted-soft transition-colors">
-            © {new Date().getFullYear()} Zygotrix University. Crafted with curiosity and care.
+            © {new Date().getFullYear()} BookTaxSolution. Crafted with curiosity
+            and care.
           </p>
         </div>
       </Container>

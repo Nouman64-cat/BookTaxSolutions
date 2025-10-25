@@ -9,11 +9,12 @@ import { useTheme } from "../../hooks/useTheme";
 const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: "Services", to: "/services" },
   { label: "Blogs", to: "/blogs" },
 ];
 
-const ZYGOTRIX_STUDIO_URL = import.meta.env.VITE_ZYGOTRIX_STUDIO_APP;
+const BookTaxSolution_STUDIO_URL = import.meta.env
+  .VITE_BookTaxSolution_STUDIO_APP;
 
 const NavigationBar = () => {
   const [open, setOpen] = useState(false);
@@ -48,10 +49,10 @@ const NavigationBar = () => {
 
         <div className="hidden items-center gap-3 md:flex">
           <Link
-            to={`${ZYGOTRIX_STUDIO_URL}/studio`}
+            to="/contact"
             className="flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-foreground"
           >
-            Zygotrix Studio <FiArrowUpRight />
+            Contact us <FiArrowUpRight />
           </Link>
           <button
             type="button"
@@ -103,15 +104,12 @@ const NavigationBar = () => {
                 </span>
                 {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
               </button>
-              <AccentButton to="/courses" onClick={close}>
-                Explore Courses
-              </AccentButton>
               <Link
-                to={`${ZYGOTRIX_STUDIO_URL}/studio`}
+                to={`${BookTaxSolution_STUDIO_URL}/studio`}
                 onClick={close}
                 className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium text-accent transition-colors hover:bg-accent-soft hover:text-foreground"
               >
-                Zygotrix Studio <FiArrowUpRight />
+                Contact us <FiArrowUpRight />
               </Link>
             </div>
           </div>

@@ -14,7 +14,7 @@ const FaqSection = ({ items }: FaqSectionProps) => {
         <div className="rounded-[2.5rem] border border-white/10 bg-white/5 p-8 sm:p-12">
           <SectionHeading
             eyebrow="Support"
-            title="Everything you need to know about studying at Zygotrix University."
+            title="Everything you need to know about studying at BookTaxSolution."
             description="Still have questions? Our learner success team is online 7 days a week."
             align="center"
           />

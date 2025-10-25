@@ -7,25 +7,29 @@ const resourceCollections = [
   {
     title: "Playbooks",
     icon: <FiBookOpen />,
-    description: "Actionable guides that walk through discovery sprints, service blueprints, and AI readiness audits.",
+    description:
+      "Actionable guides that walk through discovery sprints, service blueprints, and AI readiness audits.",
     cta: "Read playbooks",
   },
   {
     title: "Templates",
     icon: <FiDownloadCloud />,
-    description: "Download workshop canvases, engineering scorecards, and stakeholder brief templates.",
+    description:
+      "Download workshop canvases, engineering scorecards, and stakeholder brief templates.",
     cta: "Get templates",
   },
   {
     title: "Podcasts",
     icon: <FiMic />,
-    description: "Listen to conversations with product leaders building across AI, design systems, and cloud ops.",
+    description:
+      "Listen to conversations with product leaders building across AI, design systems, and cloud ops.",
     cta: "Listen in",
   },
   {
     title: "Case studies",
     icon: <FiFileText />,
-    description: "See how teams leverage Zygotrix University to accelerate launches and drive measurable outcomes.",
+    description:
+      "See how teams leverage BookTaxSolution to accelerate launches and drive measurable outcomes.",
     cta: "Explore stories",
   },
 ];
@@ -38,8 +42,9 @@ const ResourcesPage = () => {
         title="Stay in the loop with curated insights from practitioners."
         description={
           <p>
-            Access research-backed playbooks, templates, and interviews that complement your learning. New drops arrive
-            every Thursday—subscribe to get updates.
+            Access research-backed playbooks, templates, and interviews that
+            complement your learning. New drops arrive every Thursday—subscribe
+            to get updates.
           </p>
         }
         actions={<AccentButton to="/newsletter">Subscribe</AccentButton>}
@@ -58,7 +63,9 @@ const ResourcesPage = () => {
                   {collection.title}
                 </p>
               </div>
-              <p className="mt-3 text-sm text-slate-300">{collection.description}</p>
+              <p className="mt-3 text-sm text-slate-300">
+                {collection.description}
+              </p>
               <AccentButton variant="ghost" className="mt-5 text-indigo-200">
                 {collection.cta}
               </AccentButton>
@@ -76,8 +83,9 @@ const ResourcesPage = () => {
                 How Simulation Studio Helps Teams Stress-Test Launch Readiness
               </h2>
               <p className="text-sm text-slate-300">
-                Learn the five-step playbook to rehearse launches, evaluate failure scenarios, and align stakeholders on
-                the risk matrix before going live.
+                Learn the five-step playbook to rehearse launches, evaluate
+                failure scenarios, and align stakeholders on the risk matrix
+                before going live.
               </p>
               <AccentButton variant="secondary">Read feature</AccentButton>
             </div>
@@ -86,9 +94,17 @@ const ResourcesPage = () => {
                 Newsletter picks
               </span>
               <ul className="space-y-4 text-sm text-slate-200">
-                <li>• Interview: Building ethical AI checkpoints with cross-functional teams.</li>
-                <li>• Toolkit: Figma token strategies for enterprise-grade design systems.</li>
-                <li>• Lab recap: Observability war room inside Simulation Studio.</li>
+                <li>
+                  • Interview: Building ethical AI checkpoints with
+                  cross-functional teams.
+                </li>
+                <li>
+                  • Toolkit: Figma token strategies for enterprise-grade design
+                  systems.
+                </li>
+                <li>
+                  • Lab recap: Observability war room inside Simulation Studio.
+                </li>
               </ul>
             </div>
           </div>

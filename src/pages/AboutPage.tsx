@@ -6,17 +6,20 @@ const values = [
   {
     icon: <FiHeart />,
     title: "Human-centered",
-    description: "We design learning experiences that respect your time, context, and motivations.",
+    description:
+      "We design learning experiences that respect your time, context, and motivations.",
   },
   {
     icon: <FiCompass />,
     title: "Outcome-driven",
-    description: "Every course is mapped backward from real product, design, and engineering milestones.",
+    description:
+      "Every course is mapped backward from real product, design, and engineering milestones.",
   },
   {
     icon: <FiLayers />,
     title: "Systems-thinking",
-    description: "We help you connect cross-functional dots so your solutions scale with clarity.",
+    description:
+      "We help you connect cross-functional dots so your solutions scale with clarity.",
   },
 ];
 
@@ -28,9 +31,10 @@ const AboutPage = () => {
         title="A new way to upskill—purpose built for modern product teams."
         description={
           <p>
-            Zygotrix University brings together practitioners from AI, design, and cloud engineering to craft experiences
-            that translate knowledge into action. We combine rigorous curriculum with community, mentorship, and
-            simulations so learning sticks.
+            BookTaxSolution brings together practitioners from AI, design, and
+            cloud engineering to craft experiences that translate knowledge into
+            action. We combine rigorous curriculum with community, mentorship,
+            and simulations so learning sticks.
           </p>
         }
       />
@@ -63,14 +67,25 @@ const AboutPage = () => {
                 Born inside an innovation lab, now serving builders worldwide.
               </h2>
               <p className="text-sm text-slate-200">
-                We started as an internal academy to upskill engineers, designers, and PMs shipping complex AI products.
-                Word spread, and our curriculum evolved into an open platform for teams everywhere.
+                We started as an internal academy to upskill engineers,
+                designers, and PMs shipping complex AI products. Word spread,
+                and our curriculum evolved into an open platform for teams
+                everywhere.
               </p>
             </div>
             <div className="space-y-3 text-sm text-indigo-100">
-              <p>• 48K+ learners spanning startups, enterprises, and consultancies.</p>
-              <p>• 320+ projects and simulations reviewed by active practitioners.</p>
-              <p>• Partnerships with CourFactory, Orbit Labs, Nebula Systems, and more.</p>
+              <p>
+                • 48K+ learners spanning startups, enterprises, and
+                consultancies.
+              </p>
+              <p>
+                • 320+ projects and simulations reviewed by active
+                practitioners.
+              </p>
+              <p>
+                • Partnerships with CourFactory, Orbit Labs, Nebula Systems, and
+                more.
+              </p>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import {
 } from "react";
 import { ThemeContext, type ThemeMode } from "./ThemeContext";
 
-const STORAGE_KEY = "zygotrix-theme";
+const STORAGE_KEY = "BookTaxSolution-theme";
 
 const getPreferredTheme = (): ThemeMode => {
   if (typeof window === "undefined") {

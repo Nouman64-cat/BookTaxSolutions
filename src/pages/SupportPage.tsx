@@ -8,7 +8,7 @@ const supportChannels = [
   {
     icon: <FiMail />,
     title: "Email",
-    detail: "support@zygotrix.com",
+    detail: "support@BookTaxSolution.com",
     description: "Expect a reply within 12 business hours.",
   },
   {

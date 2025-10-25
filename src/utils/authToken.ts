@@ -1,4 +1,4 @@
-const AUTH_TOKEN_STORAGE_KEY = "zygotrix_auth_token";
+const AUTH_TOKEN_STORAGE_KEY = "BookTaxSolution_auth_token";
 
 export const getAuthToken = (): string | null => {
   try {

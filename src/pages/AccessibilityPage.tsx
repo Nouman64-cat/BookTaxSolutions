@@ -64,9 +64,9 @@ const AccessibilityPage = () => {
             Need something specific?
           </h2>
           <p className="mt-3 text-sm text-muted">
-            Email accessibility@zygotrix.com and we'll collaborate on a plan. We
-            can adjust Simulation Studio controls, mail printed materials, or
-            provide alternative assessment formats upon request.
+            Email accessibility@BookTaxSolution.com and we'll collaborate on a
+            plan. We can adjust Simulation Studio controls, mail printed
+            materials, or provide alternative assessment formats upon request.
           </p>
         </div>
       </Container>

@@ -14,7 +14,7 @@ const TestimonialsSection = ({ testimonials }: TestimonialsSectionProps) => {
         <SectionHeading
           eyebrow="Learner Outcomes"
           title="Stories from builders who turned knowledge into momentum."
-          description="From product managers to platform engineers, learners around the world rely on Zygotrix University to rehearse launch-critical skills."
+          description="From product managers to platform engineers, learners around the world rely on BookTaxSolution to rehearse launch-critical skills."
         />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {testimonials.map((item) => (

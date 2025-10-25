@@ -7,11 +7,12 @@ const NewsletterPage = () => {
     <div className="space-y-16">
       <PageHeader
         eyebrow="Newsletter"
-        title="Get weekly drops from the Zygotrix faculty."
+        title="Get weekly drops from the BookTaxSolution faculty."
         description={
           <p>
-            Every Thursday we deliver curated insights, Simulation Studio mission highlights, and fresh templates to your
-            inbox. No spam, just tactical ways to level up.
+            Every Thursday we deliver curated insights, Simulation Studio
+            mission highlights, and fresh templates to your inbox. No spam, just
+            tactical ways to level up.
           </p>
         }
       />
@@ -27,7 +28,8 @@ const NewsletterPage = () => {
           <AccentButton type="submit">Subscribe</AccentButton>
         </form>
         <p className="text-xs text-slate-300">
-          By subscribing you agree to receive emails from Zygotrix. You can unsubscribe anytime with one click.
+          By subscribing you agree to receive emails from BookTaxSolution. You
+          can unsubscribe anytime with one click.
         </p>
       </Container>
     </div>

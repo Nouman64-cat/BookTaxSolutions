@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div className="absolute inset-y-0 right-0 hidden w-1/2 rounded-l-[3rem] bg-indigo-500/20 blur-3xl lg:block" />
       <Container className="relative z-10 max-w-4xl px-0">
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-accent">
-          Zygotrix University
+          BookTaxSolution
           <span className="text-muted">Future-forward learning</span>
         </div>
         <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
