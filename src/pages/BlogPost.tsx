@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FiArrowLeft, FiCalendar, FiClock } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiCalendar,
+  FiClock,
+  FiUser,
+  FiShare2,
+} from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
 import { blogService } from "../services/blogService";
 import type { Blog } from "../types/blog";
@@ -41,138 +47,197 @@ const BlogPost: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-20 flex justify-center items-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen bg-[var(--bg-primary)] flex justify-center items-center">
+        <div className="text-center space-y-4">
+          <div className="relative">
+            <div className="animate-spin rounded-full h-20 w-20 border-4 border-slate-200 dark:border-slate-700 border-t-blue-600 mx-auto"></div>
+          </div>
+          <p className="text-slate-600 dark:text-slate-400">
+            Loading article...
+          </p>
+        </div>
       </div>
     );
   }
 
   if (error || !blog) {
     return (
-      <div className="min-h-screen pt-20 flex justify-center items-center">
-        <div className="text-center">
-          <div className="text-red-600 text-lg font-medium mb-4">
-            {error || "Blog post not found"}
+      <div className="min-h-screen bg-[var(--bg-primary)] flex justify-center items-center">
+        <div className="text-center max-w-md space-y-6 px-4">
+          <div className="text-6xl">📰</div>
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              Oops! Article Not Found
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400">
+              {error || "The blog post you're looking for doesn't exist."}
+            </p>
           </div>
-          <button
-            onClick={() => navigate("/blogs")}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mr-4"
-          >
-            Back to Blogs
-          </button>
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg"
-          >
-            Try Again
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => navigate("/blogs")}
+              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Back to Blogs
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Back Button */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <button
-          onClick={() => navigate("/blogs")}
-          className="flex items-center text-blue-600 hover:text-blue-700 font-medium mb-8 transition-colors"
-        >
-          <FiArrowLeft className="mr-2 h-4 w-4" />
-          Back to Blogs
-        </button>
+    <div className="min-h-screen bg-[var(--bg-primary)]">
+      {/* Back Button - Fixed */}
+      <div className="sticky top-16 z-40 bg-[var(--bg-primary)]/95 backdrop-blur-sm border-b border-[var(--border-color)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <button
+            onClick={() => navigate("/blogs")}
+            className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors group"
+          >
+            <FiArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Blogs
+          </button>
+        </div>
       </div>
 
       {/* Hero Image */}
       {blog.image?.url && (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="aspect-video rounded-2xl overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
             <img
               src={blog.image.url}
               alt={blog.title}
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           </div>
         </div>
       )}
 
       {/* Blog Content */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        {/* Title */}
-        <header className="mb-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+        {/* Header */}
+        <header className="mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
             {blog.title}
           </h1>
 
           {/* Excerpt */}
           {blog.excerpt && (
-            <p className="text-xl text-slate-600 leading-relaxed mb-6">
+            <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-medium">
               {blog.excerpt}
             </p>
           )}
 
           {/* Meta Info */}
-          <div className="flex items-center space-x-6 text-sm text-slate-500 border-b border-slate-200 pb-6">
-            <div className="flex items-center">
-              <FiCalendar className="mr-2 h-4 w-4" />
-              <span>Published</span>
+          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600 dark:text-slate-400 pb-8 border-b border-slate-200 dark:border-slate-700">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+                <FiUser className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Written by
+                </p>
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  BookTax Team
+                </p>
+              </div>
             </div>
-            <div className="flex items-center">
-              <FiClock className="mr-2 h-4 w-4" />
+            <div className="flex items-center gap-2">
+              <FiCalendar className="h-4 w-4" />
+              <span>Published Recently</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FiClock className="h-4 w-4" />
               <span>5 min read</span>
             </div>
+            <button className="ml-auto flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+              <FiShare2 className="h-4 w-4" />
+              <span>Share</span>
+            </button>
           </div>
         </header>
 
         {/* Blog Content */}
-        <div className="prose prose-lg prose-slate max-w-none">
+        <div className="prose prose-lg max-w-none">
           <ReactMarkdown
             components={{
               h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-slate-900 mt-8 mb-4 first:mt-0">
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white mt-12 mb-6 first:mt-0 pb-3 border-b border-slate-200 dark:border-slate-700">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-5">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-xl font-bold text-slate-900 mt-6 mb-3">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">
                   {children}
                 </h3>
               ),
               p: ({ children }) => (
-                <p className="text-slate-700 leading-relaxed mb-6">
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6 text-lg">
                   {children}
                 </p>
               ),
               ul: ({ children }) => (
-                <ul className="list-disc list-inside text-slate-700 mb-6 space-y-2">
-                  {children}
-                </ul>
+                <ul className="space-y-3 mb-8 ml-6">{children}</ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal list-inside text-slate-700 mb-6 space-y-2">
-                  {children}
-                </ol>
+                <ol className="space-y-3 mb-8 ml-6">{children}</ol>
+              ),
+              li: ({ children }) => (
+                <li className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg flex items-start">
+                  <span className="mr-3 text-blue-600 dark:text-blue-400 mt-1.5">
+                    •
+                  </span>
+                  <span>{children}</span>
+                </li>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-blue-600 pl-6 py-2 italic text-slate-700 bg-slate-50 rounded-r-lg mb-6">
+                <blockquote className="border-l-4 border-blue-600 dark:border-blue-400 pl-6 py-4 my-8 italic text-slate-700 dark:text-slate-300 bg-blue-50 dark:bg-blue-900/20 rounded-r-xl">
                   {children}
                 </blockquote>
               ),
               code: ({ children }) => (
-                <code className="bg-slate-100 text-slate-800 px-2 py-1 rounded text-sm font-mono">
+                <code className="bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-2 py-1 rounded text-sm font-mono border border-slate-200 dark:border-slate-700">
                   {children}
                 </code>
               ),
               pre: ({ children }) => (
-                <pre className="bg-slate-900 text-slate-100 p-6 rounded-lg overflow-x-auto mb-6">
+                <pre className="bg-slate-900 dark:bg-slate-950 text-slate-100 p-6 rounded-xl overflow-x-auto mb-8 shadow-lg border border-slate-700">
                   {children}
                 </pre>
+              ),
+              a: ({ children, href }) => (
+                <a
+                  href={href}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-2 underline-offset-2 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {children}
+                </a>
+              ),
+              strong: ({ children }) => (
+                <strong className="font-bold text-slate-900 dark:text-white">
+                  {children}
+                </strong>
+              ),
+              em: ({ children }) => (
+                <em className="italic text-slate-700 dark:text-slate-300">
+                  {children}
+                </em>
               ),
             }}
           >
@@ -180,15 +245,60 @@ const BlogPost: React.FC = () => {
           </ReactMarkdown>
         </div>
 
-        {/* Back to Blogs */}
-        <div className="mt-16 pt-8 border-t border-slate-200">
+        {/* Tags/Categories */}
+        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <div className="flex flex-wrap gap-3">
+            <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+              Tags:
+            </span>
+            {["Tax Planning", "Accounting", "Finance"].map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row gap-4 justify-between">
           <button
             onClick={() => navigate("/blogs")}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors flex items-center"
+            className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors group"
           >
-            <FiArrowLeft className="mr-2 h-4 w-4" />
+            <FiArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Back to All Blogs
           </button>
+
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center justify-center bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-900 dark:text-white px-8 py-3 rounded-lg font-medium transition-colors"
+          >
+            Back to Top
+          </button>
+        </div>
+
+        {/* Newsletter CTA */}
+        <div className="mt-16 bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 rounded-2xl p-8 text-center shadow-xl">
+          <h3 className="text-2xl font-bold text-white mb-3">
+            Enjoyed this article?
+          </h3>
+          <p className="text-blue-100 mb-6 max-w-xl mx-auto">
+            Subscribe to our newsletter for more tax tips and financial
+            insights.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-lg text-slate-900 dark:text-white bg-white dark:bg-slate-800 placeholder-slate-500 dark:placeholder-slate-400 outline-none focus:ring-2 focus:ring-white/20"
+            />
+            <button className="bg-white hover:bg-blue-50 text-blue-600 px-6 py-3 rounded-lg font-semibold transition-colors whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
         </div>
       </article>
     </div>

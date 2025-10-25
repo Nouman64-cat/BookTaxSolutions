@@ -9,7 +9,7 @@ import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <main>
         <Routes>
           <Route path="/" element={<MainLayout />}>
