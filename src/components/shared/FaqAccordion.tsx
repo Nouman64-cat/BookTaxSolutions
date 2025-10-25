@@ -18,8 +18,9 @@ const FaqAccordion = ({ items }: FaqAccordionProps) => {
           <div
             key={item.id}
             className={cn(
-              "rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition duration-200",
-              isOpen && "border-indigo-400/60 bg-indigo-500/[0.08]",
+              "rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-5 transition duration-200",
+              isOpen &&
+                "border-blue-300 dark:border-indigo-400/60 bg-blue-50 dark:bg-indigo-500/[0.08]"
             )}
           >
             <button
@@ -27,22 +28,26 @@ const FaqAccordion = ({ items }: FaqAccordionProps) => {
               onClick={() => setActiveId(isOpen ? null : item.id)}
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-200">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-indigo-200">
                   {item.category}
                 </p>
-                <p className="mt-2 text-base font-semibold text-white">{item.question}</p>
+                <p className="mt-2 text-base font-semibold text-slate-900 dark:text-white">
+                  {item.question}
+                </p>
               </div>
               <span
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition",
-                  isOpen && "rotate-180 border-indigo-400",
+                  "flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white transition",
+                  isOpen && "rotate-180 border-blue-400 dark:border-indigo-400"
                 )}
               >
                 <FiChevronDown />
               </span>
             </button>
             {isOpen && (
-              <p className="mt-4 text-sm text-slate-200">{item.answer}</p>
+              <p className="mt-4 text-sm text-slate-700 dark:text-slate-200">
+                {item.answer}
+              </p>
             )}
           </div>
         );

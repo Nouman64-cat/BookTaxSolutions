@@ -11,7 +11,7 @@ const FaqSection = ({ items }: FaqSectionProps) => {
   return (
     <section className="scroll-mt-24 pt-20" id="faqs">
       <Container className="px-0 sm:px-0">
-        <div className="rounded-[2.5rem] border border-white/10 bg-white/5 p-8 sm:p-12">
+        <div className="rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-8 sm:p-12">
           <SectionHeading
             eyebrow="Support"
             title="Everything you need to know about studying at BookTaxSolution."
