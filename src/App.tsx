@@ -1,25 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar, Footer } from "./components";
-import { Home, About, Services, Contact, Blogs, BlogPost } from "./pages";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import CommunityPage from "./pages/CommunityPage";
+import Blogs from "./pages/Blogs";
+import BlogPost from "./pages/BlogPost";
+import ContactPage from "./pages/ContactPage";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-white">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
+    <div className="min-h-screen bg-white">
+      <main>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<CommunityPage />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+        </Routes>
+      </main>
+    </div>
   );
 }
 
