@@ -21,7 +21,7 @@ const getApiUrl = (): string => {
     return "http://localhost:4000";
   } else {
     // Production environment
-    return "https://booktaxsolution.com";
+    return "https://api.booktaxsolution.com";
   }
 };
 

@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "deploy": "tar --exclude='./node_modules' -czf /tmp/server.tar.gz . && scp -i ~/.ssh/id_ed25519_do /tmp/server.tar.gz root@164.92.190.232:/tmp/ && ssh -i ~/.ssh/id_ed25519_do root@164.92.190.232 'mkdir -p /var/www/booktaxsolution_backend && tar -xzf /tmp/server.tar.gz -C /var/www/booktaxsolution_backend && rm /tmp/server.tar.gz' && rm /tmp/server.tar.gz"
   },
   "keywords": [],
   "author": "",
