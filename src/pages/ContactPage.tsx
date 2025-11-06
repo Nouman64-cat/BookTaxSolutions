@@ -1,12 +1,50 @@
-import type { FormEvent } from "react";
-import { FiSend, FiPhone, FiMapPin } from "react-icons/fi";
+import { useState, type FormEvent } from "react";
+import {
+  FiSend,
+  FiPhone,
+  FiMapPin,
+  FiCheckCircle,
+  FiAlertCircle,
+} from "react-icons/fi";
 import PageHeader from "../components/common/PageHeader";
 import Container from "../components/common/Container";
 import AccentButton from "../components/common/AccentButton";
+import { sendContactEmail } from "../services/emailService";
 
 const ContactPage = () => {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    const result = await sendContactEmail({ name, email, message });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setSubmitStatus({
+        type: "success",
+        message:
+          "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      });
+      event.currentTarget.reset();
+    } else {
+      setSubmitStatus({
+        type: "error",
+        message: result.message,
+      });
+    }
   };
 
   return (
@@ -28,12 +66,32 @@ const ContactPage = () => {
           onSubmit={handleSubmit}
           className="space-y-6 rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-8 shadow-lg"
         >
+          {submitStatus.type && (
+            <div
+              className={`rounded-2xl border p-4 ${
+                submitStatus.type === "success"
+                  ? "border-green-200 dark:border-green-400/20 bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-100"
+                  : "border-red-200 dark:border-red-400/20 bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-100"
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                {submitStatus.type === "success" ? (
+                  <FiCheckCircle className="mt-0.5 flex-shrink-0" size={20} />
+                ) : (
+                  <FiAlertCircle className="mt-0.5 flex-shrink-0" size={20} />
+                )}
+                <p className="text-sm">{submitStatus.message}</p>
+              </div>
+            </div>
+          )}
+
           <div>
             <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
               Full name
             </label>
             <input
               type="text"
+              name="name"
               required
               placeholder="Taylor Morgan"
               className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
@@ -45,6 +103,7 @@ const ContactPage = () => {
             </label>
             <input
               type="email"
+              name="email"
               required
               placeholder="you@company.com"
               className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
@@ -55,13 +114,15 @@ const ContactPage = () => {
               How can we help?
             </label>
             <textarea
+              name="message"
               rows={5}
+              required
               placeholder="Tell us about your goals, team size, and timeline."
               className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
             />
           </div>
-          <AccentButton type="submit" icon={<FiSend />}>
-            Send message
+          <AccentButton type="submit" icon={<FiSend />} disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send message"}
           </AccentButton>
         </form>
 
