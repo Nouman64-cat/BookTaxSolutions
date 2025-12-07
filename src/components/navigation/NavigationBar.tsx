@@ -1,5 +1,31 @@
-import { useState, useRef, useEffect } from "react";
-import { FiMenu, FiX, FiChevronDown, FiArrowRight } from "react-icons/fi";
+import { useState, useRef, useEffect, type ReactNode } from "react";
+import {
+  FiMenu,
+  FiX,
+  FiChevronDown,
+  FiArrowRight,
+  FiBook,
+  FiFileText,
+  FiClipboard,
+  FiTrendingUp,
+  FiDollarSign,
+  FiFile,
+  FiBookOpen,
+  FiCheckCircle,
+  FiShoppingBag,
+  FiZap,
+  FiShoppingCart,
+  FiBriefcase,
+  FiHome,
+  FiUsers,
+  FiStar,
+  FiTarget,
+  FiEdit3,
+  FiGrid,
+  FiPercent,
+  FiLayout,
+  FiHelpCircle,
+} from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import "./NavigationBar.css";
@@ -9,14 +35,14 @@ interface SubMenuItem {
   label: string;
   description: string;
   to: string;
-  icon?: string;
+  icon?: ReactNode;
 }
 
 interface ResourceItem {
   title: string;
   description: string;
   to: string;
-  icon?: string;
+  icon?: ReactNode;
 }
 
 interface MenuItem {
@@ -39,35 +65,35 @@ const menuItems: MenuItem[] = [
         description:
           "A one-stop-shop for fully-managed and industry specific accounting & bookkeeping",
         to: "/services",
-        icon: "📚",
+        icon: <FiBook className="w-5 h-5" />,
       },
       {
         label: "Bill Pay & Invoicing",
         description:
           "We can pay your bills, invoice clients, run payroll, file your taxes and a lot more.",
         to: "/services",
-        icon: "📄",
+        icon: <FiFileText className="w-5 h-5" />,
       },
       {
         label: "Tax Filing & Compliance",
         description:
           "We own your company's income tax filing & strategy, so you can focus on growth",
         to: "/services",
-        icon: "📋",
+        icon: <FiClipboard className="w-5 h-5" />,
       },
       {
         label: "Financial Advisory",
         description:
           "Full-service financial modeling, FP&A and CFO, built to scale",
         to: "/services",
-        icon: "📊",
+        icon: <FiTrendingUp className="w-5 h-5" />,
       },
       {
         label: "Payroll Services",
         description:
           "Streamlined payroll processing with compliance built-in",
         to: "/services",
-        icon: "💰",
+        icon: <FiDollarSign className="w-5 h-5" />,
       },
     ],
     resources: [
@@ -76,21 +102,21 @@ const menuItems: MenuItem[] = [
         description:
           "Our financial templates are used by hundreds of successful businesses.",
         to: "/blogs",
-        icon: "📑",
+        icon: <FiFile className="w-4 h-4" />,
       },
       {
         title: "Tax Planning Guide",
         description:
           "Complete guide to tax planning strategies for businesses.",
         to: "/blogs",
-        icon: "📖",
+        icon: <FiBookOpen className="w-4 h-4" />,
       },
       {
         title: "Monthly Close Checklist",
         description:
           "We've designed month-end close processes for the best businesses.",
         to: "/blogs",
-        icon: "✅",
+        icon: <FiCheckCircle className="w-4 h-4" />,
       },
     ],
   },
@@ -104,35 +130,35 @@ const menuItems: MenuItem[] = [
         description:
           "Tailored solutions for small business accounting and tax needs.",
         to: "/services",
-        icon: "🏪",
+        icon: <FiShoppingBag className="w-5 h-5" />,
       },
       {
         label: "Startups & Tech",
         description:
           "We have deep expertise in startup finance, from bookkeeping to forecasting.",
         to: "/services",
-        icon: "🚀",
+        icon: <FiZap className="w-5 h-5" />,
       },
       {
         label: "E-commerce",
         description:
           "Specialized eCommerce accounting including inventory and sales tax.",
         to: "/services",
-        icon: "🛒",
+        icon: <FiShoppingCart className="w-5 h-5" />,
       },
       {
         label: "Professional Services",
         description:
           "Accounting solutions for law firms, consultancies, and agencies.",
         to: "/services",
-        icon: "💼",
+        icon: <FiBriefcase className="w-5 h-5" />,
       },
       {
         label: "Real Estate",
         description:
           "Property management accounting and real estate tax strategies.",
         to: "/services",
-        icon: "🏠",
+        icon: <FiHome className="w-5 h-5" />,
       },
     ],
   },
@@ -146,28 +172,28 @@ const menuItems: MenuItem[] = [
         description:
           "We are a team of CPAs, Accountants & Tax Professionals with vast experience.",
         to: "/about",
-        icon: "👥",
+        icon: <FiUsers className="w-5 h-5" />,
       },
       {
         label: "Why Choose Us",
         description:
           "Discover why businesses trust BookTaxSolutions for their financial needs.",
         to: "/about",
-        icon: "⭐",
+        icon: <FiStar className="w-5 h-5" />,
       },
       {
         label: "Careers",
         description:
           "If you're passionate about helping businesses succeed, join our team!",
         to: "/about",
-        icon: "🎯",
+        icon: <FiTarget className="w-5 h-5" />,
       },
       {
         label: "Blog",
         description:
           "Insights, tips, and resources for business financial management.",
         to: "/blogs",
-        icon: "📝",
+        icon: <FiEdit3 className="w-5 h-5" />,
       },
     ],
   },
@@ -180,28 +206,28 @@ const menuItems: MenuItem[] = [
         label: "Blog & Insights",
         description: "Expert articles on accounting, tax, and business finance.",
         to: "/blogs",
-        icon: "📰",
+        icon: <FiGrid className="w-5 h-5" />,
       },
       {
         label: "Tax Calculator",
         description:
           "Estimate your business tax obligations with our free calculator.",
         to: "/blogs",
-        icon: "🧮",
+        icon: <FiPercent className="w-5 h-5" />,
       },
       {
         label: "Financial Templates",
         description:
           "Free downloadable templates for budgeting, forecasting, and more.",
         to: "/blogs",
-        icon: "📊",
+        icon: <FiLayout className="w-5 h-5" />,
       },
       {
         label: "FAQ",
         description:
           "Answers to common questions about our services and processes.",
         to: "/about",
-        icon: "❓",
+        icon: <FiHelpCircle className="w-5 h-5" />,
       },
     ],
   },
