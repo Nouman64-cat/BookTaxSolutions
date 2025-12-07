@@ -1,103 +1,524 @@
-import { useState } from "react";
-import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
+import { useState, useRef, useEffect } from "react";
+import { FiMenu, FiX, FiChevronDown, FiArrowRight } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
-import { cn } from "../../utils/cn";
 import Logo from "./Logo";
+import "./NavigationBar.css";
 
-const navItems = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Blogs", to: "/blogs" },
+// Types for menu items
+interface SubMenuItem {
+  label: string;
+  description: string;
+  to: string;
+  icon?: string;
+}
+
+interface ResourceItem {
+  title: string;
+  description: string;
+  to: string;
+  icon?: string;
+}
+
+interface MenuItem {
+  label: string;
+  to: string;
+  hasSubmenu?: boolean;
+  submenuItems?: SubMenuItem[];
+  resources?: ResourceItem[];
+}
+
+// Menu configuration - customize based on your services
+const menuItems: MenuItem[] = [
+  {
+    label: "Services",
+    to: "/services",
+    hasSubmenu: true,
+    submenuItems: [
+      {
+        label: "Accounting & Bookkeeping",
+        description:
+          "A one-stop-shop for fully-managed and industry specific accounting & bookkeeping",
+        to: "/services",
+        icon: "📚",
+      },
+      {
+        label: "Bill Pay & Invoicing",
+        description:
+          "We can pay your bills, invoice clients, run payroll, file your taxes and a lot more.",
+        to: "/services",
+        icon: "📄",
+      },
+      {
+        label: "Tax Filing & Compliance",
+        description:
+          "We own your company's income tax filing & strategy, so you can focus on growth",
+        to: "/services",
+        icon: "📋",
+      },
+      {
+        label: "Financial Advisory",
+        description:
+          "Full-service financial modeling, FP&A and CFO, built to scale",
+        to: "/services",
+        icon: "📊",
+      },
+      {
+        label: "Payroll Services",
+        description:
+          "Streamlined payroll processing with compliance built-in",
+        to: "/services",
+        icon: "💰",
+      },
+    ],
+    resources: [
+      {
+        title: "Free Financial Template",
+        description:
+          "Our financial templates are used by hundreds of successful businesses.",
+        to: "/blogs",
+        icon: "📑",
+      },
+      {
+        title: "Tax Planning Guide",
+        description:
+          "Complete guide to tax planning strategies for businesses.",
+        to: "/blogs",
+        icon: "📖",
+      },
+      {
+        title: "Monthly Close Checklist",
+        description:
+          "We've designed month-end close processes for the best businesses.",
+        to: "/blogs",
+        icon: "✅",
+      },
+    ],
+  },
+  {
+    label: "Industries",
+    to: "/services",
+    hasSubmenu: true,
+    submenuItems: [
+      {
+        label: "Small Businesses",
+        description:
+          "Tailored solutions for small business accounting and tax needs.",
+        to: "/services",
+        icon: "🏪",
+      },
+      {
+        label: "Startups & Tech",
+        description:
+          "We have deep expertise in startup finance, from bookkeeping to forecasting.",
+        to: "/services",
+        icon: "🚀",
+      },
+      {
+        label: "E-commerce",
+        description:
+          "Specialized eCommerce accounting including inventory and sales tax.",
+        to: "/services",
+        icon: "🛒",
+      },
+      {
+        label: "Professional Services",
+        description:
+          "Accounting solutions for law firms, consultancies, and agencies.",
+        to: "/services",
+        icon: "💼",
+      },
+      {
+        label: "Real Estate",
+        description:
+          "Property management accounting and real estate tax strategies.",
+        to: "/services",
+        icon: "🏠",
+      },
+    ],
+  },
+  {
+    label: "About",
+    to: "/about",
+    hasSubmenu: true,
+    submenuItems: [
+      {
+        label: "Our Team",
+        description:
+          "We are a team of CPAs, Accountants & Tax Professionals with vast experience.",
+        to: "/about",
+        icon: "👥",
+      },
+      {
+        label: "Why Choose Us",
+        description:
+          "Discover why businesses trust BookTaxSolutions for their financial needs.",
+        to: "/about",
+        icon: "⭐",
+      },
+      {
+        label: "Careers",
+        description:
+          "If you're passionate about helping businesses succeed, join our team!",
+        to: "/about",
+        icon: "🎯",
+      },
+      {
+        label: "Blog",
+        description:
+          "Insights, tips, and resources for business financial management.",
+        to: "/blogs",
+        icon: "📝",
+      },
+    ],
+  },
+  {
+    label: "Resources",
+    to: "/blogs",
+    hasSubmenu: true,
+    submenuItems: [
+      {
+        label: "Blog & Insights",
+        description: "Expert articles on accounting, tax, and business finance.",
+        to: "/blogs",
+        icon: "📰",
+      },
+      {
+        label: "Tax Calculator",
+        description:
+          "Estimate your business tax obligations with our free calculator.",
+        to: "/blogs",
+        icon: "🧮",
+      },
+      {
+        label: "Financial Templates",
+        description:
+          "Free downloadable templates for budgeting, forecasting, and more.",
+        to: "/blogs",
+        icon: "📊",
+      },
+      {
+        label: "FAQ",
+        description:
+          "Answers to common questions about our services and processes.",
+        to: "/about",
+        icon: "❓",
+      },
+    ],
+  },
+  {
+    label: "Contact Us",
+    to: "/contact",
+    hasSubmenu: false,
+  },
 ];
 
-const BookTaxSolution_STUDIO_URL = import.meta.env
-  .VITE_BookTaxSolution_STUDIO_APP;
-
 const NavigationBar = () => {
-  const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [mobileActiveSubmenu, setMobileActiveSubmenu] = useState<string | null>(
+    null
+  );
+  const navRef = useRef<HTMLElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const toggle = () => setOpen((prev) => !prev);
-  const close = () => setOpen(false);
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileActiveSubmenu(null);
+  };
+
+  const handleMouseEnter = (label: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveSubmenu(label);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveSubmenu(null);
+    }, 150);
+  };
+
+  const toggleMobileSubmenu = (label: string) => {
+    setMobileActiveSubmenu((prev) => (prev === label ? null : label));
+  };
+
+  // Close menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveSubmenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close mobile menu on escape
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+        setActiveSubmenu(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-overlay backdrop-blur transition-colors">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Logo />
+    <header className="graphite-header">
+      <nav ref={navRef} className="graphite-nav">
+        <div className="graphite-container">
+          {/* Logo */}
+          <div className="graphite-logo">
+            <Logo />
+          </div>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                cn(
-                  "text-sm font-medium text-muted transition-colors hover:text-foreground",
-                  isActive &&
-                    "text-foreground underline underline-offset-8 decoration-[var(--color-primary)]"
-                )
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </div>
+          {/* Desktop Navigation */}
+          <ul className="graphite-menu">
+            {menuItems.map((item) => (
+              <li
+                key={item.label}
+                className={`graphite-menu-item ${
+                  item.hasSubmenu ? "has-submenu" : ""
+                }`}
+                onMouseEnter={() =>
+                  item.hasSubmenu && handleMouseEnter(item.label)
+                }
+                onMouseLeave={handleMouseLeave}
+              >
+                {item.hasSubmenu ? (
+                  <>
+                    <button className="graphite-menu-link">
+                      {item.label}
+                      <FiChevronDown
+                        className={`graphite-chevron ${
+                          activeSubmenu === item.label ? "active" : ""
+                        }`}
+                      />
+                    </button>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <Link
-            to="/contact"
-            className="flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-foreground"
+                    {/* Mega Menu Dropdown */}
+                    <div
+                      className={`graphite-submenu ${
+                        activeSubmenu === item.label ? "active" : ""
+                      } ${item.resources ? "has-resources" : ""}`}
+                    >
+                      <div className="graphite-submenu-nav">
+                        <div className="graphite-submenu-header">
+                          {item.label}
+                        </div>
+                        <ul className="graphite-submenu-list">
+                          {item.submenuItems?.map((subItem) => (
+                            <li
+                              key={subItem.label}
+                              className="graphite-submenu-item"
+                            >
+                              {subItem.icon && (
+                                <span className="graphite-submenu-icon">
+                                  {subItem.icon}
+                                </span>
+                              )}
+                              <div>
+                                <Link
+                                  to={subItem.to}
+                                  onClick={() => setActiveSubmenu(null)}
+                                  className="graphite-submenu-link"
+                                >
+                                  {subItem.label}
+                                  <FiArrowRight className="graphite-arrow" />
+                                </Link>
+                                <p className="graphite-submenu-description">
+                                  {subItem.description}
+                                </p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Resources Section */}
+                      {item.resources && (
+                        <div className="graphite-submenu-resources">
+                          <div className="graphite-submenu-header">
+                            Latest Resources
+                          </div>
+                          {item.resources.map((resource) => (
+                            <div
+                              key={resource.title}
+                              className="graphite-resource"
+                            >
+                              {resource.icon && (
+                                <span className="graphite-resource-icon">
+                                  {resource.icon}
+                                </span>
+                              )}
+                              <div>
+                                <Link
+                                  to={resource.to}
+                                  onClick={() => setActiveSubmenu(null)}
+                                  className="graphite-resource-link"
+                                >
+                                  {resource.title}
+                                </Link>
+                                <p className="graphite-resource-description">
+                                  {resource.description}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `graphite-menu-link ${isActive ? "active" : ""}`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA Button */}
+          <div className="graphite-cta">
+            <Link to="/contact" className="graphite-cta-button">
+              Get Started
+              <FiArrowRight />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="graphite-mobile-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
           >
-            Contact us <FiArrowUpRight />
-          </Link>
-          {/* <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary-button bg-secondary-button text-foreground transition-colors hover:bg-secondary-button-hover"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-          </button> */}
+            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
+      </nav>
 
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors md:hidden"
-          onClick={toggle}
-          aria-label="Toggle menu"
-        >
-          {open ? <FiX size={20} /> : <FiMenu size={20} />}
-        </button>
+      {/* Mobile Menu */}
+      <div className={`graphite-mobile-menu ${mobileMenuOpen ? "active" : ""}`}>
+        <ul className="graphite-mobile-list">
+          {menuItems.map((item) => (
+            <li key={item.label} className="graphite-mobile-item">
+              {item.hasSubmenu ? (
+                <>
+                  <button
+                    className={`graphite-mobile-link has-submenu ${
+                      mobileActiveSubmenu === item.label ? "active" : ""
+                    }`}
+                    onClick={() => toggleMobileSubmenu(item.label)}
+                  >
+                    {item.label}
+                    <FiChevronDown
+                      className={`graphite-mobile-chevron ${
+                        mobileActiveSubmenu === item.label ? "active" : ""
+                      }`}
+                    />
+                  </button>
 
-        {open && (
-          <div className="absolute inset-x-0 top-full border-b border-border bg-gradient-to-br from-indigo-600 via-surface-elevated to-surface  backdrop-blur-md px-4 pb-6 pt-4 shadow-lg shadow-black/20 md:hidden transition-colors shadow-theme-card">
-            <div className="flex flex-col gap-3">
-              {navItems.map((item) => (
+                  <div
+                    className={`graphite-mobile-submenu ${
+                      mobileActiveSubmenu === item.label ? "active" : ""
+                    }`}
+                  >
+                    {item.submenuItems?.map((subItem) => (
+                      <Link
+                        key={subItem.label}
+                        to={subItem.to}
+                        onClick={closeMobileMenu}
+                        className="graphite-mobile-submenu-item"
+                      >
+                        {subItem.icon && (
+                          <span className="graphite-mobile-submenu-icon">
+                            {subItem.icon}
+                          </span>
+                        )}
+                        <div>
+                          <span className="graphite-mobile-submenu-title">
+                            {subItem.label}
+                          </span>
+                          <span className="graphite-mobile-submenu-desc">
+                            {subItem.description}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+
+                    {item.resources && (
+                      <div className="graphite-mobile-resources">
+                        <div className="graphite-mobile-resources-header">
+                          Latest Resources
+                        </div>
+                        {item.resources.map((resource) => (
+                          <Link
+                            key={resource.title}
+                            to={resource.to}
+                            onClick={closeMobileMenu}
+                            className="graphite-mobile-resource"
+                          >
+                            {resource.icon && (
+                              <span className="graphite-mobile-resource-icon">
+                                {resource.icon}
+                              </span>
+                            )}
+                            <div>
+                              <span className="graphite-mobile-resource-title">
+                                {resource.title}
+                              </span>
+                              <span className="graphite-mobile-resource-desc">
+                                {resource.description}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
                 <NavLink
-                  key={item.to}
                   to={item.to}
-                  onClick={close}
+                  onClick={closeMobileMenu}
                   className={({ isActive }) =>
-                    cn(
-                      "rounded-lg px-3 py-2 text-base font-medium text-muted transition-colors hover:bg-accent-soft hover:text-foreground",
-                      isActive && "bg-accent-soft text-foreground"
-                    )
+                    `graphite-mobile-link ${isActive ? "active" : ""}`
                   }
                 >
                   {item.label}
                 </NavLink>
-              ))}
-              <hr className="border-border" />
-              <Link
-                to={`${BookTaxSolution_STUDIO_URL}/studio`}
-                onClick={close}
-                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium text-accent transition-colors hover:bg-accent-soft hover:text-foreground"
-              >
-                Contact us <FiArrowUpRight />
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <div className="graphite-mobile-cta">
+          <Link
+            to="/contact"
+            onClick={closeMobileMenu}
+            className="graphite-mobile-cta-button"
+          >
+            Get Started
+            <FiArrowRight />
+          </Link>
+        </div>
+      </div>
+
+      {/* Backdrop for mobile menu */}
+      {mobileMenuOpen && (
+        <div className="graphite-backdrop" onClick={closeMobileMenu} />
+      )}
     </header>
   );
 };

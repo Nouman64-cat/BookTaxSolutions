@@ -8,31 +8,30 @@ const HeroSection = () => {
       <div className="absolute inset-y-0 right-0 hidden w-1/2 rounded-l-[3rem] bg-indigo-500/20 blur-3xl lg:block" />
       <Container className="relative z-10 max-w-4xl px-0">
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-accent">
-          BookTaxSolution
-          <span className="text-muted">Future-forward learning</span>
+          Beyond Accounting
+          <span className="text-muted">We Build Financial Intelligence</span>
         </div>
         <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          Learn the systems behind breakthrough products—with mentors who build
-          them.
+          At BookTaxSolutions, we empower startups with data-driven financial
+          clarity.
         </h1>
         <p className="mt-6 max-w-3xl text-lg text-muted">
-          Join immersive programs combining cohort-based learning, adaptive
-          practice MCQs, and the Simulation Studio for lifelike labs. Move
-          beyond tutorials into applied mastery.
+          From accounting and taxation to FP&A and AI-powered automation, we
+          simplify your finances so you can focus on scaling what truly matters.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <AccentButton to="/courses" icon={<FiArrowRight />}>
-            Browse Programs
+          <AccentButton to="/services" icon={<FiArrowRight />}>
+            Explore our services
           </AccentButton>
-          <AccentButton to="/practice" variant="secondary" icon={<FiPlay />}>
-            Enter Practice Studio
+          <AccentButton to="/contact" variant="secondary" icon={<FiPlay />}>
+            Get free consultation
           </AccentButton>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {[
-            { metric: "96%", label: "Learner satisfaction" },
-            { metric: "40+", label: "Studio-inspired programs" },
-            { metric: "12K", label: "Adaptive practice questions" },
+            { metric: "98%", label: "Client satisfaction" },
+            { metric: "100+", label: "Trusted by 100+ businesses" },
+            { metric: "24/7", label: "Global Support" },
           ].map((item) => (
             <div
               key={item.label}

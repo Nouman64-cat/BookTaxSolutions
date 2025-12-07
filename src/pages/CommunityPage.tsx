@@ -1,4 +1,4 @@
-import { FiUsers, FiVideo, FiMessageCircle, FiCalendar } from "react-icons/fi";
+import { FiUsers, FiVideo, FiMessageCircle, FiCheck } from "react-icons/fi";
 import PageHeader from "../components/common/PageHeader";
 import Container from "../components/common/Container";
 import AccentButton from "../components/common/AccentButton";
@@ -21,30 +21,6 @@ const communityHighlights = [
     title: "Peer circles",
     description:
       "Join themed peer circles to practice interviews, review portfolios, and share launch retrospectives.",
-  },
-];
-
-const upcomingEvents = [
-  {
-    title: "AI Product Strategy Roundtable",
-    date: "Jan 22",
-    host: "Dr. Hannah Lee",
-    description:
-      "Learn how teams at scale evaluate model ROI and ethical considerations before shipping.",
-  },
-  {
-    title: "Design Systems Clinic",
-    date: "Jan 29",
-    host: "Emily Jones",
-    description:
-      "Submit components for live critique and see how enterprise teams evolve design languages.",
-  },
-  {
-    title: "Cloud Resilience Red-Team",
-    date: "Feb 05",
-    host: "Miguel Garcia",
-    description:
-      "Run chaos experiments in the Simulation Studio to stress-test your observability stack.",
   },
 ];
 
@@ -83,44 +59,39 @@ const CommunityPage = () => {
             </div>
           ))}
         </div>
-
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5">
-          <div className="border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-6 py-4">
-            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
-              <FiCalendar />
-              Upcoming sessions
-            </div>
-          </div>
-          <div className="divide-y divide-slate-200 dark:divide-white/10">
-            {upcomingEvents.map((event) => (
-              <div
-                key={event.title}
-                className="flex flex-col gap-3 px-6 py-6 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
-                    {event.date}
-                  </p>
-                  <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">
-                    {event.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-indigo-100">
-                    {event.description}
-                  </p>
-                </div>
-                <div className="flex flex-col items-start gap-2 sm:items-end">
-                  <span className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
-                    Host
-                  </span>
-                  <p className="text-sm text-slate-900 dark:text-white">
-                    {event.host}
-                  </p>
-                  <AccentButton variant="secondary">Reserve spot</AccentButton>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Why Choose BookTaxSolutions Section */}
+        <section className="mt-16 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 p-8 shadow-md">
+          <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-indigo-200">
+            Why Choose BookTaxSolutions?
+          </h2>
+          <ul className="space-y-4 text-base text-slate-700 dark:text-slate-200">
+            <li className="flex items-center gap-2">
+              <FiCheck className="text-green-500 text-lg" />{" "}
+              <b>Certified Experts</b> — QuickBooks ProAdvisors, Xero Certified,
+              Tax Professionals
+            </li>
+            <li className="flex items-center gap-2">
+              <FiCheck className="text-green-500 text-lg" />{" "}
+              <b>Data-Driven Insights</b> — From monthly reports to AI-driven
+              forecasting
+            </li>
+            <li className="flex items-center gap-2">
+              <FiCheck className="text-green-500 text-lg" />{" "}
+              <b>Tailored for You</b> — Scalable solutions for startups and
+              enterprises
+            </li>
+            <li className="flex items-center gap-2">
+              <FiCheck className="text-green-500 text-lg" />{" "}
+              <b>Security First</b> — Your data is encrypted, confidential, and
+              secure
+            </li>
+            <li className="flex items-center gap-2">
+              <FiCheck className="text-green-500 text-lg" />{" "}
+              <b>Transparent Pricing</b> — No hidden fees, just results that
+              matter
+            </li>
+          </ul>
+        </section>
       </Container>
     </div>
   );

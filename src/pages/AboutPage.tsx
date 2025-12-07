@@ -1,25 +1,19 @@
-import { FiHeart, FiCompass, FiLayers } from "react-icons/fi";
+import { FiCompass, FiLayers } from "react-icons/fi";
 import PageHeader from "../components/common/PageHeader";
 import Container from "../components/common/Container";
 
 const values = [
   {
-    icon: <FiHeart />,
-    title: "Human-centered",
-    description:
-      "We design learning experiences that respect your time, context, and motivations.",
-  },
-  {
     icon: <FiCompass />,
-    title: "Outcome-driven",
+    title: "Our Vision",
     description:
-      "Every course is mapped backward from real product, design, and engineering milestones.",
+      "A world where businesses make smarter financial decisions powered by data and automation.",
   },
   {
     icon: <FiLayers />,
-    title: "Systems-thinking",
+    title: "Our Mission",
     description:
-      "We help you connect cross-functional dots so your solutions scale with clarity.",
+      "To make finance effortless, insightful, and innovation-driven.",
   },
 ];
 
@@ -27,20 +21,22 @@ const AboutPage = () => {
   return (
     <div className="space-y-16">
       <PageHeader
-        eyebrow="About"
-        title="A new way to upskill—purpose built for modern product teams."
+        eyebrow="About Us"
+        title="Your Growth Partner in the World of Finance"
         description={
           <p>
-            BookTaxSolution brings together practitioners from AI, design, and
-            cloud engineering to craft experiences that translate knowledge into
-            action. We combine rigorous curriculum with community, mentorship,
-            and simulations so learning sticks.
+            We’re not your average accounting firm. BookTaxSolutions is a
+            future-focused finance agency blending expertise, technology, and
+            strategy to deliver measurable impact. With certified accountants,
+            financial analysts, and tax professionals, we’re redefining how
+            businesses handle their books, plan their taxes, and forecast their
+            future.
           </p>
         }
       />
 
       <Container className="space-y-12">
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2">
           {values.map((value) => (
             <div
               key={value.title}
