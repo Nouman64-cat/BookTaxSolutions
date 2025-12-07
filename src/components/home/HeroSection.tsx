@@ -1,61 +1,65 @@
-import { FiArrowRight, FiPlay } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import AccentButton from "../common/AccentButton";
-import Container from "../common/Container";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-gradient-to-br from-blue-50 via-white to-slate-50 px-6 py-16 shadow-lg sm:px-12">
-      {/* Light theme decorative gradient blob */}
-      <div className="absolute inset-y-0 right-0 hidden w-1/2 rounded-l-[3rem] bg-gradient-to-l from-blue-100/60 to-transparent blur-3xl lg:block" />
-      
-      <Container className="relative z-10 max-w-4xl px-0">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-blue-600 shadow-sm">
-          Beyond Accounting
-          <span className="text-slate-500">We Build Financial Intelligence</span>
+    <section className="relative py-20 sm:py-28 lg:py-32">
+      {/* Minimal background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-50 rounded-full blur-3xl opacity-50" />
+      </div>
+
+      {/* Centered Content */}
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Minimal Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-xs font-medium text-slate-600 mb-8">
+          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+          Financial Intelligence for Modern Businesses
         </div>
-        
-        {/* Main Headline */}
-        <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-          At BookTaxSolutions, we empower startups with data-driven financial
-          clarity.
+
+        {/* Main Headline - Clean & Bold */}
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1]">
+          Empowering startups with
+          <span className="block text-blue-600 mt-2">data-driven financial clarity</span>
         </h1>
-        
-        {/* Description */}
-        <p className="mt-6 max-w-3xl text-lg text-slate-600">
-          From accounting and taxation to FP&A and AI-powered automation, we
-          simplify your finances so you can focus on scaling what truly matters.
+
+        {/* Minimal Description */}
+        <p className="mt-6 text-lg sm:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          From accounting and taxation to FP&A and AI-powered automation — 
+          we simplify your finances so you can focus on growth.
         </p>
-        
-        {/* CTA Buttons */}
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <AccentButton to="/services" icon={<FiArrowRight />}>
-            Explore our services
+
+        {/* Single CTA - Minimal */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <AccentButton to="/contact" icon={<FiArrowRight />}>
+            Get Started
           </AccentButton>
-          <AccentButton to="/contact" variant="secondary" icon={<FiPlay />}>
-            Get free consultation
-          </AccentButton>
+          <a 
+            href="/services" 
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            Learn more →
+          </a>
         </div>
-        
-        {/* Stats Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
-          {[
-            { metric: "98%", label: "Client satisfaction" },
-            { metric: "100+", label: "Trusted by 100+ businesses" },
-            { metric: "24/7", label: "Global Support" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="rounded-3xl border border-slate-200 bg-white p-5 text-center text-sm text-slate-600 shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <p className="text-2xl font-semibold text-slate-900">
-                {item.metric}
-              </p>
-              <p className="mt-2 capitalize tracking-wide">{item.label}</p>
-            </div>
-          ))}
+
+        {/* Minimal Stats - Inline */}
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-sm text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-slate-900">100+</span>
+            <span>Clients</span>
+          </div>
+          <div className="w-px h-8 bg-slate-200 hidden sm:block" />
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-slate-900">98%</span>
+            <span>Satisfaction</span>
+          </div>
+          <div className="w-px h-8 bg-slate-200 hidden sm:block" />
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-slate-900">24/7</span>
+            <span>Support</span>
+          </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
