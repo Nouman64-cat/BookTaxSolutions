@@ -8,7 +8,7 @@
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
       "Noto Color Emoji";
 
-    /* Light theme colors */
+    /* Light theme colors - Always active */
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
@@ -19,7 +19,7 @@
     --accent-primary: #3b82f6;
     --accent-hover: #2563eb;
 
-    /* Custom theme properties */
+    /* Custom theme properties - Light theme only */
     --color-surface: 255 255 255;
     --color-surface-elevated: 248 250 252;
     --color-border: 226 232 240;
@@ -27,28 +27,6 @@
     --color-muted: 100 116 139;
     --color-accent: 59 130 246;
     --color-accent-soft: 239 246 255;
-  }
-
-  [data-theme="dark"] {
-    /* Dark theme colors */
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-tertiary: #334155;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-tertiary: #94a3b8;
-    --border-color: #334155;
-    --accent-primary: #3b82f6;
-    --accent-hover: #60a5fa;
-
-    /* Custom theme properties for dark mode */
-    --color-surface: 15 23 42;
-    --color-surface-elevated: 30 41 59;
-    --color-border: 51 65 85;
-    --color-text: 248 250 252;
-    --color-muted: 148 163 184;
-    --color-accent: 96 165 250;
-    --color-accent-soft: 30 58 138;
   }
 
   /* Ensure Axiforma font is applied globally */
@@ -134,10 +112,6 @@ body {
   .shadow-theme-card {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
-
-  [data-theme="dark"] .shadow-theme-card {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  }
 }
 
 /* Custom scrollbar styles */
@@ -158,7 +132,7 @@ body {
   background: var(--text-tertiary);
 }
 
-/* Theme transition */
+/* Smooth transitions */
 * {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;

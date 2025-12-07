@@ -6,18 +6,18 @@ const CallToActionSection = () => {
   return (
     <section className="pt-24">
       <Container className="px-0 sm:px-0">
-        <div className="overflow-hidden rounded-[2.5rem] border border-blue-200 dark:border-indigo-400/30 bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 dark:from-indigo-500/30 dark:via-purple-500/20 dark:to-blue-500/30 px-8 py-12 sm:px-12">
+        <div className="overflow-hidden rounded-[2.5rem] border border-blue-200 bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 px-8 py-12 sm:px-12">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl space-y-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-300 dark:border-white/20 bg-blue-200 dark:bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.26em] text-blue-700 dark:text-indigo-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.26em] text-blue-700">
                 <FiMessageCircle />
                 Weekly mentor circles
               </span>
-              <h3 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
+              <h3 className="text-3xl font-semibold tracking-tight text-slate-900">
                 Join a global community learning the frontier of product
                 innovation.
               </h3>
-              <p className="text-sm text-slate-700 dark:text-indigo-100">
+              <p className="text-sm text-slate-700">
                 Access exclusive workshops, design critiques, and engineering
                 roundtables hosted by practitioners actively shipping at scale.
               </p>

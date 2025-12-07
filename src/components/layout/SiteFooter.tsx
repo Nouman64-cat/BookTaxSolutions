@@ -46,19 +46,19 @@ const socialLinks = [
 
 const SiteFooter = () => {
   return (
-    <footer className="border-t border-border bg-background-subtle pt-16 pb-10 transition-colors">
+    <footer className="border-t border-slate-200 bg-slate-50 pt-16 pb-10 transition-colors">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-4">
             <Logo />
-            <p className="text-sm text-muted">
+            <p className="text-sm text-slate-600">
               BookTaxSolution empowers product builders with studio-grade
               courses, adaptive practice, and mentorship that mirrors modern
               teams.
             </p>
             <Link
               to="/enterprise"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-slate-900"
             >
               BookTaxSolution for Teams
               <FiArrowUpRight />
@@ -68,14 +68,14 @@ const SiteFooter = () => {
           <div className="grid gap-8 text-sm lg:col-span-8 sm:grid-cols-2 md:grid-cols-3">
             {footerLinks.map((section) => (
               <div key={section.title}>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
                   {section.title}
                 </h3>
                 <ul className="mt-4 space-y-3">
                   {section.links.map((link) => (
                     <li key={link.to}>
                       <Link
-                        className="text-muted transition-colors hover:text-foreground"
+                        className="text-slate-600 transition-colors hover:text-slate-900"
                         to={link.to}
                       >
                         {link.label}
@@ -88,7 +88,7 @@ const SiteFooter = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-6 border-t border-border pt-6 transition-colors md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-6 border-t border-slate-200 pt-6 transition-colors md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             {socialLinks.map((item) => (
               <a
@@ -96,13 +96,13 @@ const SiteFooter = () => {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary-button text-muted transition-colors hover:border-accent hover:bg-accent-soft hover:text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-600 transition-colors hover:border-blue-500 hover:bg-blue-50 hover:text-slate-900"
               >
                 <span className="text-lg">{item.icon}</span>
               </a>
             ))}
           </div>
-          <p className="text-xs text-muted-soft transition-colors">
+          <p className="text-xs text-slate-500 transition-colors">
             © {new Date().getFullYear()} BookTaxSolution. Crafted with curiosity
             and care.
           </p>

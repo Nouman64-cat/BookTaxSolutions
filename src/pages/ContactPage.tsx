@@ -51,7 +51,7 @@ const ContactPage = () => {
     <div className="space-y-16">
       <PageHeader
         eyebrow="Contact"
-        title="Let’s design your learning journey."
+        title="Let's design your learning journey."
         description={
           <p>
             Have questions about programs, enterprise rollouts, or
@@ -64,14 +64,14 @@ const ContactPage = () => {
       <Container className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-8 shadow-lg"
+          className="space-y-6 rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-lg"
         >
           {submitStatus.type && (
             <div
               className={`rounded-2xl border p-4 ${
                 submitStatus.type === "success"
-                  ? "border-green-200 dark:border-green-400/20 bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-100"
-                  : "border-red-200 dark:border-red-400/20 bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-100"
+                  ? "border-green-200 bg-green-50 text-green-700"
+                  : "border-red-200 bg-red-50 text-red-700"
               }`}
             >
               <div className="flex items-start gap-3">
@@ -86,7 +86,7 @@ const ContactPage = () => {
           )}
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
+            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
               Full name
             </label>
             <input
@@ -94,11 +94,11 @@ const ContactPage = () => {
               name="name"
               required
               placeholder="Taylor Morgan"
-              className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
+              className="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
+            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
               Email address
             </label>
             <input
@@ -106,11 +106,11 @@ const ContactPage = () => {
               name="email"
               required
               placeholder="you@company.com"
-              className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
+              className="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
+            <label className="block text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
               How can we help?
             </label>
             <textarea
@@ -118,7 +118,7 @@ const ContactPage = () => {
               rows={5}
               required
               placeholder="Tell us about your goals, team size, and timeline."
-              className="mt-2 w-full rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/[0.08] px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-500 dark:focus:border-indigo-400 focus:outline-none"
+              className="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
             />
           </div>
           <AccentButton type="submit" icon={<FiSend />} disabled={isSubmitting}>
@@ -126,31 +126,31 @@ const ContactPage = () => {
           </AccentButton>
         </form>
 
-        <div className="space-y-6 rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-8">
+        <div className="space-y-6 rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8">
           <div className="space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600 dark:text-indigo-200">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
               Additional touchpoints
             </span>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-slate-600">
               Prefer to connect instantly? Reach us via phone or drop by our
               studio. We host open office hours every Friday.
             </p>
           </div>
-          <div className="space-y-4 text-sm text-slate-900 dark:text-white">
-            <div className="flex items-start gap-3 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-4">
-              <FiPhone className="mt-1 text-blue-600 dark:text-indigo-200" />
+          <div className="space-y-4 text-sm text-slate-900">
+            <div className="flex items-start gap-3 rounded-3xl border border-slate-200 bg-white p-4">
+              <FiPhone className="mt-1 text-blue-600" />
               <div>
                 <p className="font-semibold">Call us</p>
-                <p className="text-slate-600 dark:text-indigo-100">
+                <p className="text-slate-600">
                   +1 (800) 555-0192
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-4">
-              <FiMapPin className="mt-1 text-blue-600 dark:text-indigo-200" />
+            <div className="flex items-start gap-3 rounded-3xl border border-slate-200 bg-white p-4">
+              <FiMapPin className="mt-1 text-blue-600" />
               <div>
                 <p className="font-semibold">Visit the studio</p>
-                <p className="text-slate-600 dark:text-indigo-100">
+                <p className="text-slate-600">
                   87 Innovation Way
                   <br />
                   San Francisco, CA
@@ -158,7 +158,7 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-3xl border border-blue-200 dark:border-indigo-400/20 bg-blue-50 dark:bg-indigo-500/10 p-4 text-xs text-blue-700 dark:text-indigo-100">
+          <div className="rounded-3xl border border-blue-200 bg-blue-50 p-4 text-xs text-blue-700">
             Access needs? We provide captions, transcription, and alternative
             formats for all sessions. Mention your requirements when you reach
             out.

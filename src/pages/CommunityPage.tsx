@@ -45,26 +45,26 @@ const CommunityPage = () => {
           {communityHighlights.map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 text-sm"
+              className="rounded-3xl border border-slate-200 bg-slate-50 p-6 text-sm"
             >
-              <div className="flex items-center gap-3 text-blue-600 dark:text-indigo-200">
+              <div className="flex items-center gap-3 text-blue-600">
                 <span className="text-lg">{item.icon}</span>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em]">
                   {item.title}
                 </p>
               </div>
-              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+              <p className="mt-3 text-sm text-slate-600">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
         {/* Why Choose BookTaxSolutions Section */}
-        <section className="mt-16 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 p-8 shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-indigo-200">
+        <section className="mt-16 rounded-3xl border border-slate-200 bg-white p-8 shadow-md">
+          <h2 className="text-2xl font-bold mb-6 text-blue-700">
             Why Choose BookTaxSolutions?
           </h2>
-          <ul className="space-y-4 text-base text-slate-700 dark:text-slate-200">
+          <ul className="space-y-4 text-base text-slate-700">
             <li className="flex items-center gap-2">
               <FiCheck className="text-green-500 text-lg" />{" "}
               <b>Certified Experts</b> — QuickBooks ProAdvisors, Xero Certified,

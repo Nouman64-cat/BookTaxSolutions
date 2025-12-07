@@ -13,40 +13,40 @@ const PracticeCard = ({ topic, highlighted = false }: PracticeCardProps) => {
   return (
     <div
       className={cn(
-        "rounded-3xl border border-border bg-surface p-6 transition duration-300 hover:border-accent hover:shadow-xl hover:shadow-indigo-500/20",
-        highlighted && "border-accent",
+        "rounded-3xl border border-slate-200 bg-white p-6 transition duration-300 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10",
+        highlighted && "border-blue-400",
       )}
     >
       <div className="flex items-start justify-between">
-        <span className="rounded-full border border-border bg-background-subtle px-3 py-1 text-xs font-semibold text-accent transition-colors">
+        <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-blue-600 transition-colors">
           {topic.tag ?? "Practice"}
         </span>
         <span
           className={cn(
             "inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold",
             topic.trend === "down"
-              ? "bg-rose-500/12 text-rose-500"
-              : "bg-emerald-500/12 text-emerald-500",
+              ? "bg-rose-100 text-rose-600"
+              : "bg-emerald-100 text-emerald-600",
           )}
         >
           <TrendIcon />
           {topic.accuracy != null ? `${topic.accuracy}%` : "New"}
         </span>
       </div>
-      <h3 className="mt-4 text-lg font-semibold text-foreground">{topic.title}</h3>
+      <h3 className="mt-4 text-lg font-semibold text-slate-900">{topic.title}</h3>
       {topic.description && (
-        <p className="mt-2 text-xs text-muted line-clamp-2">{topic.description}</p>
+        <p className="mt-2 text-xs text-slate-600 line-clamp-2">{topic.description}</p>
       )}
-      <p className="mt-2 text-sm text-muted">
+      <p className="mt-2 text-sm text-slate-600">
         {topic.questions != null ? `${topic.questions} curated MCQs` : "Adaptive MCQs"} •{" "}
-        <span className="inline-flex items-center gap-1 text-accent">
+        <span className="inline-flex items-center gap-1 text-blue-600">
           <FiClock />
           {topic.estimatedTime ?? "Approx. 20 mins"}
         </span>
       </p>
-      <div className="mt-6 flex items-center justify-between rounded-2xl border border-border bg-background-subtle px-4 py-3 text-xs text-muted transition-colors">
+      <div className="mt-6 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600 transition-colors">
         <span>Adaptive feedback enabled</span>
-        <span className="font-semibold text-accent">Try Quiz</span>
+        <span className="font-semibold text-blue-600">Try Quiz</span>
       </div>
     </div>
   );
