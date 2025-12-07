@@ -3,17 +3,46 @@ import AccentButton from "../common/AccentButton";
 
 const HeroSection = () => {
   return (
-    <section className="relative py-20 sm:py-28 lg:py-32">
-      {/* Minimal background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-50 rounded-full blur-3xl opacity-50" />
+    <section className="relative py-20 sm:py-28 lg:py-32 overflow-visible">
+      {/* Dotted Background Pattern - Full Width Breakout */}
+      <div 
+        className="absolute inset-y-0 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen -z-10 bg-white"
+      >
+        {/* Dot pattern using radial gradient - uniform 20px spacing */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.5) 2px, transparent 2px)`,
+            backgroundSize: '20px 20px',
+            backgroundPosition: '0 0',
+          }}
+        />
+        {/* Subtle edge fade - only at the very edges, not covering the main area */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(to right, white 0%, transparent 3%, transparent 97%, white 100%),
+              linear-gradient(to bottom, white 0%, transparent 5%, transparent 95%, white 100%)
+            `,
+          }}
+        />
+        {/* Center fade to reduce dot visibility behind content */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.5) 40%, transparent 70%)`,
+          }}
+        />
+        {/* Subtle center glow - reduced opacity so dots remain visible */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-3xl" />
       </div>
 
       {/* Centered Content */}
-      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="relative max-w-4xl mx-auto px-6 text-center">
         {/* Minimal Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-xs font-medium text-slate-600 mb-8">
-          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 px-4 py-1.5 text-xs font-medium text-slate-600 mb-8 shadow-sm">
+          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
           Financial Intelligence for Modern Businesses
         </div>
 
